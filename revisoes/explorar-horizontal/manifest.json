@@ -1,0 +1,14 @@
+﻿[
+    {
+        "path":  "explorar.html",
+        "sha256":  "EDCD65141D3B95F30392A82562BEF6E54B1FA8409B1AC7FACEAD84C8F2E10E47"
+    },
+    {
+        "path":  "css/pages/explorar.css",
+        "sha256":  "48C6E928E92CB4B3E55A681747FA2C738FAF0688A6EB674EB31BA475826010C3"
+    },
+    {
+        "path":  "js/pages/explorar.js",
+        "sha256":  "1A0BF50AAF18C0B67B000ECC215897A223ECABC3BEA5792BF7873783CB88A5E4"
+    }
+]

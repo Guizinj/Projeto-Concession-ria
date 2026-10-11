@@ -1,0 +1,44 @@
+﻿.stock-page { background: #fff; }
+.stock-main { padding-block: 2rem 4rem; }
+.stock-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 1.5rem; margin-bottom: 1.5rem; }
+.stock-heading h1 { max-width: none; margin: 0; font-size: clamp(2rem, 3vw, 2.75rem); line-height: 1.15; letter-spacing: -0.05em; }
+.stock-heading p { margin-top: 0.625rem; color: var(--color-muted); font-size: 0.875rem; }
+.stock-explore-link { gap: 0.5rem; color: var(--color-muted); font-size: 0.8125rem; font-weight: 500; }
+.stock-explore-link .icon { width: 1rem; height: 1rem; }
+.stock-filters { padding: 1.25rem; margin-bottom: 2rem; border-color: #e3e7ee; border-radius: 0.875rem; background: #f7f8fa; }
+.stock-toolbar, .filter-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+.field { display: grid; min-width: 0; gap: 0.5rem; font-size: 0.75rem; font-weight: 600; }
+.field input, .field select { width: 100%; min-width: 0; min-height: 3rem; padding: 0.75rem; border: 1px solid var(--color-border-strong); border-radius: 0.5rem; background: #fff; color: var(--color-text); font-size: 0.875rem; font-weight: 400; transition: border-color var(--transition-fast), box-shadow var(--transition-fast); }
+.field input::placeholder { color: var(--color-muted); opacity: 1; }
+.stock-filters details { margin-top: 1rem; border-top: 1px solid var(--color-border); }
+.stock-filters summary { display: flex; min-height: 2.75rem; align-items: center; gap: 0.75rem; padding-block: 0.75rem; list-style: none; cursor: pointer; color: var(--color-text); font-size: 0.8125rem; font-weight: 600; }
+.stock-filters summary::-webkit-details-marker { display: none; }
+.stock-filters summary::after { width: 0.4375rem; height: 0.4375rem; flex: 0 0 auto; margin-left: auto; margin-right: 0.125rem; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; content: ''; transform: rotate(45deg); transition: transform var(--transition-fast); }
+.stock-filters details[open] summary::after { transform: rotate(225deg); }
+.filter-summary-note { display: none; color: var(--color-muted); font-size: 0.75rem; font-weight: 400; }
+.filter-grid { margin-top: 0.5rem; padding-bottom: 0.5rem; }
+.filter-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+.filter-actions .button { min-height: 2.75rem; padding: 0.625rem 1rem; font-size: 0.8125rem; }
+.filter-actions .button-primary { background: #15171b; }
+.filter-actions .button-outline { border-color: transparent; background: transparent; color: var(--color-muted); font-weight: 500; }
+.filter-feedback { margin-top: 0.75rem; color: var(--color-danger); font-size: 0.8125rem; }
+.filter-feedback:empty { display: none; }
+.results-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.75rem; margin-bottom: 1.25rem; }
+.results-heading h2 { font-size: 1.25rem; letter-spacing: -0.025em; }
+.results-heading p { color: var(--color-muted); font-size: 0.75rem; }
+.stock-page .vehicle-card { border-radius: 0.875rem; }
+.load-more { display: flex; justify-content: center; margin-top: 2rem; }
+#pagination-feedback:not(:empty) { margin-top: 1.5rem; }
+@media (min-width: 30rem) { .filter-summary-note { display: inline; } }
+@media (min-width: 48rem) {
+  .stock-main { padding-top: 2.75rem; }
+  .stock-heading { margin-bottom: 2rem; }
+  .stock-filters { padding: 1.5rem; }
+  .stock-toolbar { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+  .filter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 64rem) { .filter-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (hover: hover) and (pointer: fine) {
+  .filter-actions .button-primary:hover { background: #32363e; }
+  .filter-actions .button-outline:hover { background: #e9edf3; color: var(--color-text); }
+}

@@ -1,0 +1,30 @@
+﻿.home-page { background: #fff; }
+.home-main { display: grid; gap: 2.5rem; padding-block: 2rem 4rem; }
+.home-intro { display: grid; gap: 1.75rem; padding-bottom: 2rem; border-bottom: 1px solid var(--color-border); }
+.home-intro-copy { min-width: 0; }
+.home-intro h1 { max-width: none; margin: 0; font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.1; letter-spacing: -0.055em; }
+.home-intro-description { max-width: 43ch; margin-top: 0.75rem; color: var(--color-muted); font-size: 0.9375rem; line-height: 1.7; }
+.home-intro-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 1.5rem; margin-top: 0.875rem; }
+.home-intro-links .text-link { font-size: 0.8125rem; }
+.home-intro-links .text-link:last-child { color: var(--color-muted); font-weight: 500; }
+.home-intro-links .icon { width: 1rem; height: 1rem; }
+.home-search { min-width: 0; padding: 1.25rem; border-radius: 0.875rem; background: #f4f6f8; }
+.home-search label { display: block; margin-bottom: 0.75rem; font-size: 0.8125rem; font-weight: 650; }
+.home-search-field { display: flex; min-width: 0; align-items: center; gap: 0.75rem; padding: 0.25rem 0.25rem 0.25rem 0.875rem; border: 1px solid var(--color-border-strong); border-radius: 0.625rem; background: #fff; transition: border-color var(--transition-fast), box-shadow var(--transition-fast); }
+.home-search-field:focus-within { border-color: var(--color-focus); box-shadow: 0 0 0 2px var(--color-accent-soft); }
+.home-search-field > .icon { width: 1.125rem; height: 1.125rem; flex: 0 0 auto; color: var(--color-muted); }
+.home-search input { width: 100%; min-width: 0; min-height: 2.75rem; padding: 0.5rem 0; border: 0; background: transparent; color: var(--color-text); font-size: 0.8125rem; }
+.home-search input:focus-visible { outline: 0; }
+.home-search input::placeholder { color: var(--color-muted); opacity: 1; }
+.home-search .button { min-width: 2.75rem; min-height: 2.75rem; flex: 0 0 auto; padding: 0.625rem; border-radius: 0.4375rem; }
+.home-search .button .icon { width: 1.125rem; height: 1.125rem; }
+.selection-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 1.25rem; }
+.selection-heading h2 { margin: 0; font-size: clamp(1.375rem, 2vw, 1.75rem); letter-spacing: -0.035em; }
+.selection-heading .text-link { font-size: 0.8125rem; font-weight: 500; }
+.selection-heading .icon { width: 1rem; height: 1rem; }
+.home-page .vehicle-card { border-radius: 0.875rem; }
+@media (min-width: 48rem) {
+  .home-main { gap: 3rem; padding-block: 2.75rem 4rem; }
+  .home-intro { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 3rem; align-items: center; padding-bottom: 2.75rem; }
+  .home-search { padding: 1.5rem; }
+}

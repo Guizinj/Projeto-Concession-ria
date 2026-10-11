@@ -1,0 +1,32 @@
+.explore-main { max-width: 60rem; padding-block: var(--space-6) var(--space-7); }
+.explore-heading { margin-bottom: var(--space-5); }
+.explore-heading h1 { max-width: 24ch; margin-top: var(--space-3); font-size: clamp(2rem, 4vw, 3.25rem); }
+.explore-heading .page-lead { max-width: 65ch; margin-top: var(--space-3); font-size: 0.9375rem; }
+.explore-stage { border-radius: var(--radius-medium); touch-action: pan-y pinch-zoom; }
+.explore-position { min-height: 1.5rem; margin-bottom: var(--space-3); color: var(--color-muted); font-size: 0.875rem; }
+.explore-card .vehicle-card-link { cursor: pointer; }
+.explore-card .vehicle-card-title { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+.explore-card .vehicle-card-footer { flex-wrap: wrap; gap: var(--space-4); }
+.explore-card .explore-details-action { display: inline-flex; width: auto; height: auto; min-height: 2.75rem; gap: var(--space-2); padding: var(--space-2) var(--space-3); border-radius: var(--radius-small); font-size: 0.8125rem; font-weight: 600; }
+.explore-controls { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-3); margin-top: var(--space-4); }
+.explore-controls .button { flex: 1; padding-inline: var(--space-3); }
+#explore-feedback:not(:empty) { margin-top: var(--space-4); color: var(--color-muted); }
+.explore-stock-link { margin-top: var(--space-5); }
+.explore-stage .loading-state .vehicle-grid { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 47.999rem) {
+  .explore-main { padding-top: var(--space-5); }
+  .explore-heading { margin-bottom: var(--space-4); }
+  .explore-heading .page-lead { font-size: 0.875rem; line-height: 1.5; }
+  .explore-card .vehicle-card-body { padding: var(--space-4); }
+  .explore-card .vehicle-card-specs { margin-top: var(--space-3); padding-bottom: var(--space-3); }
+  .explore-card .vehicle-card-footer { padding-top: var(--space-4); gap: var(--space-2); }
+  .explore-controls { position: sticky; z-index: 10; bottom: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom, 0px)); padding-block: var(--space-3); background: var(--color-background); }
+}
+@media (min-width: 48rem) {
+  .explore-main { padding-top: var(--space-7); }
+  .explore-card .vehicle-card-link { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+  .explore-card .vehicle-card-media { height: 100%; min-height: 22rem; aspect-ratio: auto; }
+  .explore-card .vehicle-card-image { object-fit: contain; }
+  .explore-card .vehicle-card-body { justify-content: center; padding: var(--space-6); }
+  .explore-controls .button { flex: 0 1 auto; min-width: 10rem; }
+}

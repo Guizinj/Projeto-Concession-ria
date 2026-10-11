@@ -1,0 +1,30 @@
+.location-page { background: #fff; }
+.location-main { padding-block: 2rem 4rem; }
+.location-heading { margin-bottom: 1.75rem; }
+.location-heading h1 { max-width: none; font-size: clamp(2rem, 3vw, 2.75rem); line-height: 1.15; letter-spacing: -0.05em; }
+.location-heading p { margin-top: 0.625rem; color: var(--color-muted); font-size: 0.875rem; }
+.location-grid { display: grid; min-width: 0; overflow: hidden; border: 1px solid var(--color-border); border-radius: 1rem; background: #fff; }
+.location-card { min-width: 0; padding: 1.5rem; }
+.location-label { display: flex; align-items: center; gap: 0.5rem; color: var(--color-muted); }
+.location-label .icon { width: 1.125rem; height: 1.125rem; color: var(--color-link); }
+.location-label h2 { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0; }
+.location-address { margin-top: 1rem; max-width: 28ch; font-style: normal; font-size: clamp(1.125rem, 1.6vw, 1.375rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.6; overflow-wrap: anywhere; }
+.location-actions { display: grid; gap: 0.75rem; margin-top: 1.5rem; }
+.location-actions .button { min-height: 2.875rem; padding: 0.75rem 1rem; border-radius: 0.625rem; font-size: 0.8125rem; }
+.location-actions .icon { width: 1rem; height: 1rem; }
+.location-visit { margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--color-border); }
+.location-visit h3 { font-size: 0.875rem; font-weight: 600; letter-spacing: -0.01em; }
+.location-note { margin-top: 0.5rem; max-width: 40ch; color: var(--color-muted); font-size: 0.8125rem; line-height: 1.8; }
+.location-map { min-width: 0; min-height: 24rem; overflow: hidden; border-top: 1px solid var(--color-border); background: var(--color-surface-soft); }
+.location-map iframe { display: block; width: 100%; height: 24rem; border: 0; }
+.location-map-placeholder { display: flex; min-height: 24rem; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; padding: 1.5rem; color: var(--color-muted); text-align: center; }
+.location-map-placeholder > .icon { width: 2rem; height: 2rem; }
+@media (min-width: 48rem) {
+  .location-main { padding-top: 2.75rem; }
+  .location-heading { margin-bottom: 2rem; }
+  .location-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); align-items: stretch; }
+  .location-card { grid-column: 2; grid-row: 1; align-self: center; padding: 2rem; }
+  .location-map { grid-column: 1; grid-row: 1; border-top: 0; border-right: 1px solid var(--color-border); }
+  .location-map iframe, .location-map-placeholder { height: 100%; min-height: 30rem; }
+}
+@media (min-width: 64rem) { .location-card { padding: 2.5rem; } }

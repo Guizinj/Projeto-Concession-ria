@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Uma nova forma de descobrir seu próximo carro no showroom da Vértice Motors.">
+    <meta name="theme-color" content="#0e1117">
+    <title>Explorar | Vértice Motors</title>
+    <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/pages/explorar.css">
+    <script type="module" src="./js/pages/explorar.js"></script>
+  </head>
+  <body class="theme-dark">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="./index.html" data-brand-link aria-label="Vértice Motors — início">
+          <img src="./assets/images/marca.svg" width="40" height="40" alt="" data-brand-logo>
+          <span class="brand-copy"><span class="brand-name" data-brand-name>Vértice Motors</span><span class="brand-caption">Showroom automotivo</span></span>
+        </a>
+        <nav class="main-nav" aria-label="Navegação principal">
+          <a href="./index.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#home"></use></svg><span>Início</span></a>
+          <a href="./estoque.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#grid"></use></svg><span>Estoque</span></a>
+          <a href="./explorar.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#compass"></use></svg><span>Explorar</span></a>
+        </nav>
+        <div class="header-contact">
+          <button class="button button-small button-outline" type="button" disabled data-contact-placeholder>Contato em breve</button>
+          <a class="button button-small button-outline" data-contact-link hidden target="_blank" rel="noopener noreferrer">Fale com a loja</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container explore-main" id="conteudo" tabindex="-1">
+      <div class="explore-heading">
+        <p class="eyebrow"><span class="accent-dot" aria-hidden="true"></span>Modo Explorar</p>
+        <h1 id="titulo">Uma descoberta de cada vez.</h1>
+        <p id="explore-instructions" class="page-lead">Deslize para os lados ou use os botões. No teclado, use as setas ← e →.</p>
+      </div>
+      <section id="explore-stage" class="explore-stage" aria-label="Seleção de veículos" aria-roledescription="carrossel" aria-describedby="explore-instructions" tabindex="0">
+        <p id="explore-position" class="explore-position" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div id="explore-vehicle"></div>
+        <div id="explore-feedback"></div>
+        <div id="explore-controls" class="explore-controls" hidden>
+          <button id="explore-previous" class="button button-outline" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#arrow-left"></use></svg>Anterior</button>
+          <button id="explore-next" class="button button-primary" type="button">Próximo<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#arrow-right"></use></svg></button>
+        </div>
+      </section>
+      <a class="text-link explore-stock-link" href="./estoque.html">Prefere comparar? Ver todo o estoque →</a>
+      <noscript><p class="notice">Ative o JavaScript para usar o showroom completo. Você pode continuar navegando pelas páginas.</p></noscript>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div><p class="footer-brand" data-brand-name>Vértice Motors</p><p class="footer-description" data-brand-description>Uma nova perspectiva para o seu próximo carro.</p></div>
+        <div class="footer-location"><p data-store-address>Localização em breve.</p><a class="text-link" data-maps-link hidden target="_blank" rel="noopener noreferrer">Como chegar</a><a class="text-link" data-instagram-link hidden target="_blank" rel="noopener noreferrer">Instagram</a></div>
+        <p class="copyright">© <span data-current-year>2026</span> <span data-brand-name>Vértice Motors</span></p>
+      </div>
+    </footer>
+  </body>
+</html>
