@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Apresentação do showroom digital: estoque, experiência visual e atendimento pelo WhatsApp para concessionárias e showrooms.">
+    <meta name="theme-color" content="#121722">
+    <title>Showroom digital — apresentação comercial</title>
+    <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./resumida.css">
+    <script src="./apresentacao.js" defer></script>
+  </head>
+  <body>
+    <div class="presentation-tools" aria-label="Opções da apresentação">
+      <a href="./showroom-digital-resumido.pdf" download>Baixar PDF <span aria-hidden="true">↓</span></a>
+      <button type="button" id="print-presentation" hidden>Imprimir / salvar como PDF</button>
+    </div>
+
+    <main class="sheet">
+      <header class="document-header">
+        <div class="brand">
+          <img src="../assets/images/marca.svg" width="36" height="36" alt="">
+          <div><strong>Vértice Motors</strong><span>Showroom digital automotivo</span></div>
+        </div>
+        <p class="document-type">Apresentação do projeto<br><span>Concessionárias &amp; showrooms</span></p>
+      </header>
+
+      <section class="introduction" aria-labelledby="title">
+        <p class="eyebrow">Do primeiro interesse à visita na loja</p>
+        <h1 id="title">Seu estoque,<br><span>na palma da mão.</span></h1>
+        <p class="lead">Uma vitrine digital para apresentar seus veículos, facilitar a escolha e levar o cliente ao atendimento da loja — no celular e no computador.</p>
+      </section>
+
+      <section class="product-preview" aria-label="Telas reais do projeto no celular">
+        <div class="preview-heading"><p>Uma experiência que acompanha o cliente.</p><span>Telas reais do projeto</span></div>
+        <div class="screens">
+          <figure>
+            <img class="phone-screen" src="./assets/home.png" width="780" height="1520" alt="Página inicial com busca por veículo, destaques do estoque e navegação flutuante.">
+            <figcaption><span class="screen-number">01</span>Descobrir</figcaption>
+          </figure>
+          <figure>
+            <img class="phone-screen" src="./assets/explorar.png" width="780" height="1520" alt="Explorar com um Toyota Corolla em tela cheia, informações do anúncio e navegação entre fotos e carros.">
+            <figcaption><span class="screen-number">02</span>Explorar</figcaption>
+          </figure>
+          <figure>
+            <img class="phone-screen" src="./assets/veiculo.png" width="780" height="1520" alt="Ficha individual do veículo com galeria de fotos, preço e informações do anúncio.">
+            <figcaption><span class="screen-number">03</span>Escolher</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="features" aria-labelledby="features-title">
+        <div class="section-heading"><h2 id="features-title">O que sua loja oferece ao cliente</h2><span>Recursos já implementados</span></div>
+        <div class="feature-grid">
+          <div class="feature"><h3>Estoque fácil de consultar</h3><p>Busca por marca, modelo e versão, filtros e ordenação por preço para comparar opções.</p></div>
+          <div class="feature"><h3>Explorar no estilo Reels</h3><p>Um carro por tela: deslize para ver outros veículos e para os lados para conhecer as fotos.</p></div>
+          <div class="feature"><h3>Detalhes que ajudam a decidir</h3><p>Preço, disponibilidade, ficha técnica, equipamentos, descrição e veículos semelhantes.</p></div>
+          <div class="feature"><h3>WhatsApp com contexto</h3><p>Mensagens prontas conforme o acesso. Na ficha, a conversa já identifica o veículo e seu link.</p></div>
+          <div class="feature"><h3>Contato e visita à loja</h3><p>Formulário que prepara a mensagem no WhatsApp, intenção de test drive, endereço, mapa e rota.</p></div>
+          <div class="feature"><h3>Vitrine conectada ao estoque</h3><p>Fotos e informações vêm de uma base central. Cada anúncio tem seu próprio link para divulgação.</p></div>
+        </div>
+      </section>
+
+      <aside class="business-value" aria-label="Proposta para a loja">
+        <div class="value-mark" aria-hidden="true">↗</div>
+        <div><h2>Uma presença digital à altura da sua loja.</h2><p>Apresente melhor os carros e receba conversas com o interesse do cliente já identificado.</p></div>
+      </aside>
+
+      <footer class="document-footer">
+        <p>Projeto em desenvolvimento · versão de apresentação · outubro de 2026</p>
+        <p>Marca e anúncios utilizados para demonstrar a experiência. Implantação e personalização a combinar.</p>
+      </footer>
+    </main>
+  </body>
+</html>

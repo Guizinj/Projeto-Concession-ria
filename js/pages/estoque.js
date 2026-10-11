@@ -100,7 +100,7 @@ function requireSearchTerm({ focus = false } = {}) {
   return false;
 }
 
-function apply({ focusResults = false, requireSearch = false, requireCriteria = false } = {}) {
+function apply({ revealResults = true, focusResults = false, requireSearch = false, requireCriteria = false } = {}) {
   if (requireSearch && !requireSearchTerm({ focus: focusResults })) return;
   cancel();
   for (const name of FILTER_NAMES) form.elements[name].setCustomValidity("");
@@ -126,7 +126,7 @@ function apply({ focusResults = false, requireSearch = false, requireCriteria = 
   const url = catalogUrl(location.href, state);
   if (url.href !== location.href) history.pushState(null, "", url);
   feedback.textContent = "";
-  load(false, { revealResults: true, focusResults });
+  load(false, { revealResults, focusResults });
 }
 
 function restore({ revealResults = false } = {}) {
@@ -169,7 +169,7 @@ form.addEventListener("submit", event => { event.preventDefault(); apply({ focus
 // Permite corrigir uma validade customizada antes da próxima tentativa de submit.
 form.addEventListener("input", event => event.target.setCustomValidity(""));
 document.getElementById("clear-filters").addEventListener("click", () => {
-  form.reset(); apply(); form.elements.busca.focus();
+  form.reset(); apply({ revealResults: false }); form.elements.busca.focus({ preventScroll: true });
 });
 more.addEventListener("click", () => load(true));
 window.addEventListener("popstate", () => restore());

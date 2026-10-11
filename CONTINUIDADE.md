@@ -592,3 +592,49 @@ menu público; excluir os arquivos de teste do pacote de deploy futuro.
 > existente do Supabase e reutilizando os componentes das Etapas 1 a 3.
 > Implemente e valide somente a Etapa 4; ao concluir, entregue para minha
 > revisão antes de seguir para a próxima etapa. Não faça deploy.
+
+## Material de apresentação — 11/10/2026
+
+A pedido do usuário, foi criado `apresentacao/`, separado das cinco páginas do
+showroom. `showroom-digital.pdf` apresenta o projeto comercialmente em uma única
+página A4; `index.html` é a versão responsiva com download e impressão;
+`resumo.md` contém o texto editável e o escopo atual. `README.md` nessa pasta
+explica como abrir e atualizar o PDF. Capturas reais de Home, Explorar e ficha
+foram obtidas na prévia local (somente leituras públicas), sem enviar mensagens.
+
+Conteúdo: estoque e busca/filtros, Explorar no estilo Reels, fotos com swipe,
+ficha completa, contato contextual no WhatsApp, compartilhamento, mapa e interesse
+em visita/test drive. Sem promessa de vendas ou funções futuras. Formulário
+prepara a mensagem; cliente confirma o envio e loja confirma o agendamento.
+
+Validação da apresentação: 320/390/768/1440 px sem overflow, imagens locais,
+botão de impressão, estilos A4 com controles ocultos, PDF com uma página e
+download HTTP 200. Abertura direta file:// e conteúdo sem JavaScript conferidos.
+Capturas de desktop, mobile e impressão revisadas visualmente. Nenhuma dependência
+adicionada. Arquivos protegidos do Supabase preservados. Chrome isolado encerrado;
+Live Server mantido. Nenhum material enviado a terceiros. Não avança a Etapa 7
+(em revisão) nem inicia a Etapa 8. Sem deploy.
+## Apresentação comercial ampliada — 11/10/2026
+
+O usuário pediu um material mais explicativo para conduzir a conversa de venda.
+`apresentacao/index.html` e `showroom-digital.pdf` agora têm cinco partes/páginas:
+oportunidade, experiência de escolha, atendimento, visita e personalização para
+a loja. O texto conecta necessidades a recursos e benefícios esperados, com
+exemplo de conversa no WhatsApp, quadro de dúvidas/recursos e próximo passo de
+demonstração. Não inventa métricas, condições de contratação ou recursos futuros.
+
+`apresentacao/roteiro-de-apresentacao.md` traz sugestões de fala, perguntas,
+sequência de demonstração e respostas a dúvidas sobre Instagram, WhatsApp,
+atualização, vendas e contratação. É apoio para quem apresenta, separado do PDF
+do possível cliente. A versão anterior foi preservada em `resumida.html`,
+`resumida.css` e `showroom-digital-resumido.pdf` (uma página). README da pasta
+atualizado. Capturas reais existentes reutilizadas; nenhuma nova consulta ao banco.
+
+Verificados 320/390/768/1440 px sem overflow, destinos da navegação, botão de
+impressão, movimento reduzido, cinco páginas A4 e download HTTP 200. Capturas das
+cinco páginas revisadas visualmente. Abertura file:// sem JS e versão resumida
+conferidas; PDF anterior conserva uma página. Validação temporária em
+`vertice-apresentacao-ampliada-validar.mjs`; capturas em
+`vertice-apresentacao-ampliada`. Sintaxe do script de impressão válida.
+Arquivos protegidos permanecem idênticos. Chrome isolado encerrado; Live Server
+mantido. Etapa 7 em revisão. Sem deploy, envio a terceiros ou alterações no site.

@@ -389,3 +389,10 @@ com item ativo azul e texto claro; as outras páginas mantêm a barra clara.
 Contato direto na localização tem destaque verde suave. Mensagens de WhatsApp
 variam por página/origem; nos detalhes incluem o veículo, status e link, mantendo
 os avisos de reserva/venda. Formulário e contato sem JS também têm texto preenchido.
+## Apresentação comercial
+
+Material para donos de concessionárias e showrooms em [apresentacao/](apresentacao/README.md):
+PDF principal de cinco páginas A4, versão HTML responsiva, resumo editável e roteiro de apresentação. A versão de uma página foi preservada. Usa capturas reais
+da prévia local, feitas em 11/10/2026. Abra `http://127.0.0.1:5500/apresentacao/`
+ou `apresentacao/index.html` diretamente. A apresentação é separada do site e
+não consulta o Supabase; Etapa 7 continua em revisão, sem deploy.
