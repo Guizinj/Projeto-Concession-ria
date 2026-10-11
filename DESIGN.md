@@ -1,7 +1,12 @@
 # Vértice Motors — Design System
 
-Etapa 3. HTML, CSS e componentes DOM em JavaScript Vanilla, sem bibliotecas,
-fontes externas, build ou novas consultas ao Supabase.
+Atualizado em 11/10/2026. HTML, CSS e componentes DOM em JavaScript Vanilla,
+sem bibliotecas, fontes externas ou build. Este documento consolida a base da
+Etapa 3 e as revisões posteriores. O estado atual de Home/Estoque inclui os
+ajustes de hero e limpeza de filtros descritos abaixo.
+
+Para adaptar a identidade a outra loja, veja [PERSONALIZACAO.md](PERSONALIZACAO.md).
+Prefira alterações discretas e restritas ao pedido; preserve o restante do site.
 
 ## Direção visual
 
@@ -46,7 +51,7 @@ destinos e ícones são preservados. No desktop, os headers usam navegação em
 cápsula, com destaque branco/azul para a página atual. Header translúcido, desfoque
 em pseudo-elemento (sem alterar o posicionamento da barra fixa), contato suave
 em azul e movimento discreto da marca no hover; movimento reduzido desativa animações.
-Explorar usa a mesma cápsula clara em todas as larguras, inclusive desktop;
+Explorar usa cápsula azul escuro em todas as larguras, inclusive desktop;
 reserva 96 px mais safe area no feed, preservando a dica e as ações acima da barra.
 
 Detalhes deixou de ser um destino geral do menu: é acessado pelos links dos
@@ -73,7 +78,8 @@ document.querySelector(".vehicle-grid").append(card);
 ```
 
 `veiculo` recebe os objetos da camada `js/veiculos.js`, incluindo
-`imagem_capa: { url }` ou `null`. O componente não consulta o banco.
+`imagem_capa: { url }` ou `null`. Consultas são fornecidas pela página;
+quando a opção `gallery` é usada, o callback consulta os metadados sob demanda.
 
 - Exibe marca/modelo, versão, fabricação/modelo, km, câmbio, preço e status.
 - Um link por card, com nome acessível e `veiculo.html?carro=slug`.
@@ -126,7 +132,7 @@ exibe uma confirmação de teste, sem fazer requisições. Links dos cards levam
 à página de detalhes, cuja ficha completa foi conectada na Etapa 6.
 
 `tests/componentes.html`, `componentes.css` e `componentes.js` são arquivos
-de revisão, sem entrada no menu público. As quatro páginas principais
+de revisão, sem entrada no menu público. As cinco páginas principais
 permanecem na raiz. Na publicação final, exclua os arquivos de teste do pacote.
 
 Resultados obtidos estão em [VALIDACAO.md](VALIDACAO.md). A Etapa 4 reutiliza
@@ -226,12 +232,10 @@ Componentes usam os tokens e ícones existentes; nenhuma mudança no feed ou nas
 galerias. Home, estoque e ficha ativam o contato genérico já previsto no header.
 Explorar continua sem header/logo/contato, conforme a revisão aprovada.
 
-Na revisão atual, `localizacao.html` usa título “Localização” e introdução curta.
-Endereço, Traçar rota, Agendar visita e mapa fazem parte de um único conjunto com
-borda fina e radius de 16 px. Texto antes do mapa no mobile; mapa maior à esquerda
-e endereço à direita no desktop. Endereço em destaque, rótulo discreto com ícone
-de pin e orientação de test drive separada por linha. Altura do mapa de 384 px no
-mobile e mínima de 480 px no desktop; título acessível e configuração preservada.
+Na revisão atual, `localizacao.html` usa “Fale Conosco.”, formulário e CTA de test
+drive. Endereço, rota e mapa ficam abaixo. O layout atual e as alturas do mapa
+estão na seção “Localização e contato” ao final deste documento; substituem as
+medidas da primeira versão dessa página.
 
 ## Revisão da Etapa 7 — menu e rodapé institucional
 
@@ -247,7 +251,7 @@ cantos esquerdos de 20 px, abertura de 320 ms e fechamento de 240 ms. O contato
 fica no fim da gaveta; o conteúdo rola em telas baixas. A partir de 768 px, mantém
 o painel compacto aprovado: largura máxima de 400 px, radius de 24 px, próximo
 ao header, abertura de 260 ms e fechamento de 160 ms. Fundo desfocado.
-Quatro destinos com ícones, rótulos e descrições curtas; atalho de
+Cinco destinos com ícones, rótulos e descrições curtas; atalho de
 Destaques ocupando a linha e WhatsApp discreto no fim. Página/seção atual
 destacada em azul. Conteúdo rola internamente em telas baixas; fechar fica no topo.
 Escape, botão e toque fora fecham; foco inicial no fechar, fundo inativo e retorno
@@ -265,24 +269,28 @@ a partir de 1024 px. Links com alvos de 44 px, endereço em `address` e base com
 copyright/ano automático. Usa logo, ícones, espaços e contatos existentes;
 Instagram fica oculto enquanto não houver URL. A localização tem página própria,
 acessível apenas pelo menu e rodapé. A Home não tem seção nem iframe de mapa.
-Na localização, cartão de endereço/agendamento e mapa empilhados no mobile e
-lado a lado a partir de 768 px. Mapa com altura mínima de 384 px no mobile e
-480 px no desktop, título acessível e carregamento lazy. Explorar mantém o rodapé
+Na localização, endereço/agendamento e mapa ficam empilhados no mobile e
+lado a lado a partir de 768 px. Mapa com altura mínima de 352 px no mobile e
+416 px no desktop, título acessível e carregamento lazy. Explorar mantém o rodapé
 oculto. Configuração e Supabase preservados.
 
 ## Revisão de 11/10/2026 — Home e Estoque
 
-Home com título direto, texto curto e links de estoque/exploração. Busca nativa
-GET, com ícones existentes, envia `busca` ao Estoque sem nova consulta ou módulo.
-Introdução e busca lado a lado a partir de 768 px; empilhadas no celular.
+Home com hero retangular compacto: foto local do Civic, título e apoio sobre a
+imagem, com gradiente escuro para leitura. Mínimo de `14.5rem` no mobile e
+`clamp(17rem, 25vw, 20rem)` a partir de 768 px; a altura pode crescer com conteúdo.
+“Ver estoque” é azul e tem seta diagonal para cima/direita (`rotate(-45deg)`).
+“Explorar veículos” também é botão, com padding equivalente, borda translúcida e
+fundo muito suave. Busca permanece abaixo do hero em todas as larguras.
+Busca nativa GET envia `busca` ao Estoque, com os ícones e módulos existentes.
 Destaques tem título curto, separação por espaço e cards existentes. A seção
 Novidades e seus atalhos foram removidos; os demais carros são consultados no Estoque.
 Fundo branco, bordas finas e radius de 14 px nos cards dessas duas páginas.
 
 Estoque com título compacto, acesso discreto ao Explorar e formulário em fundo
 cinza claro. Busca e ordenação lado a lado no desktop; filtros adicionais no
-`details` nativo, com indicador de abertura. Aplicar filtros usa grafite; limpeza
-é uma ação de texto. Componentes de consultas, paginação e galerias preservados.
+`details` nativo, com indicador de abertura. Aplicar filtros usa grafite;
+Limpar filtros é um botão com contorno. Consultas, paginação e galerias preservadas.
 Na revisão seguinte, o padrão do catálogo passou a menor preço; maior preço e
 recém-adicionados vêm depois no seletor. URLs explícitas continuam compartilháveis.
 Buscar pela Home ou pelo Estoque revela suavemente o título dos resultados após
@@ -293,7 +301,10 @@ usa rolagem instantânea. Busca textual vazia ou com espaços é bloqueada na Ho
 e no Estoque. Home usa `required`, padrão de texto não vazio e validação de letras/números.
 No Estoque, Enter no campo exige termo; o botão Aplicar filtros permite critérios
 sem busca textual. Envio sem termo nem filtros mostra orientação, sem consulta
-ou rolagem e preservando os carros/paginação. Limpar filtros restaura o catálogo.
+ou rolagem e preservando os carros/paginação. Limpar filtros restaura o catálogo
+sem rolar aos resultados; o foco volta à busca com `preventScroll: true`.
+`apply({ revealResults: false })` conserva esse comportamento também no retry.
+Buscar/aplicar continua revelando os resultados normalmente.
 
 ## Revisão de 11/10/2026 — Página do veículo
 

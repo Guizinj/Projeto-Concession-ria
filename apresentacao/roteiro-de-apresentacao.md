@@ -26,7 +26,7 @@ Ouça a resposta antes de apresentar a solução. Se ele mencionar dificuldade p
 
 **Na demonstração:**
 
-1. Mostre os destaques na Home e faça uma busca com um termo real.
+1. Mostre a foto de abertura com título sobre a imagem, os dois acessos e os destaques na Home; faça uma busca com um termo real.
 2. Abra o estoque, use um filtro e compare a ordenação por preço.
 3. Entre no Explorar e avance entre os veículos.
 4. Passe as fotos de um carro que tenha várias imagens cadastradas.
@@ -83,6 +83,12 @@ Relacione a resposta aos campos existentes. Se a loja pedir outros campos, regis
 
 Preço, prazo, publicação e personalização dependem do que for combinado. O projeto atual está em prévia local, com a etapa de contato em revisão.
 
+Para preparar a proposta e a implantação, use [PERSONALIZACAO.md](../PERSONALIZACAO.md).
+O caminho atual é uma cópia do site e um projeto Supabase separado por loja.
+Combine quem administra o banco e atualiza anúncios, além de domínio, hospedagem
+e suporte. O site não tem painel administrativo próprio nem estoque de várias
+lojas isolado no mesmo banco. Não apresente isso como recurso disponível.
+
 ## Respostas para dúvidas comuns
 
 **“Já tenho Instagram.”**
@@ -115,4 +121,9 @@ Não invente condições de contratação durante a apresentação.
 - Escolha um veículo com informações completas e várias fotos.
 - Confirme se os anúncios, preços e estados de disponibilidade estão atualizados.
 - Explique que os contatos e a localização da demonstração precisam ser ajustados para a loja.
+- Revise logo, foto do hero e material comercial. Capturas/PDFs anteriores podem
+  não mostrar o hero atual; o guia da apresentação orienta como atualizar.
 - Mostre apenas recursos implementados. O cadastro atual é pelo Supabase; negociação e agendamento dependem da equipe. Painel administrativo próprio, pagamento, financiamento automático e envio por email precisam de outro escopo.
+
+Roteiro revisado em 11/10/2026. Nenhum material foi enviado a terceiros ou PDF
+regenerado nesta revisão documental.

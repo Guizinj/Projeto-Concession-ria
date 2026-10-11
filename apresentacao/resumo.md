@@ -4,7 +4,7 @@ Uma vitrine digital que apresenta o estoque da loja, facilita a escolha do veíc
 
 ## Recursos já implementados
 
-- **Home com destaques e busca:** apresenta os veículos selecionados e dá acesso direto ao estoque.
+- **Home com foto de abertura, destaques e busca:** hero retangular compacto com título sobre a foto, acesso ao estoque e ao Explorar; apresenta até seis veículos selecionados e busca direta.
 - **Catálogo com filtros:** pesquisa por marca, modelo e versão, ordenação por preço e filtros para comparar opções.
 - **Explorar no estilo Reels:** um carro por tela, navegação vertical entre veículos e swipe lateral entre as fotos.
 - **Ficha completa do veículo:** preço, disponibilidade, galeria, dados técnicos, equipamentos, descrição e sugestões de veículos semelhantes.
@@ -21,6 +21,11 @@ Reunir fotos, informações e atendimento em uma presença digital organizada, a
 
 As etapas 4, 5 e 6 foram aprovadas. A etapa 7 está implementada e em revisão. O projeto está disponível em prévia local, sem deploy. Vértice Motors é a identidade usada nesta demonstração; a implantação e a personalização para cada loja precisam ser combinadas.
 
+A personalização mantém a estrutura simples: cópia do site e Supabase separado
+por loja. Nome, logo, contatos e localização ficam em `js/config.js`; foto do
+hero, metadados e conteúdo estático têm pontos de edição próprios. Consulte
+[PERSONALIZACAO.md](../PERSONALIZACAO.md) para execução e conferência da entrega.
+
 O cadastro atual é feito pelo Supabase. Não há painel administrativo próprio, pagamento online, financiamento automático, envio por email ou confirmação automática de test drive nesta entrega. Esses recursos não devem ser anunciados como disponíveis.
 
 ## Material para conduzir a apresentação
@@ -31,3 +36,7 @@ para a loja. O PDF e a versão HTML incluem explicações, exemplos e benefício
 para a rotina do negócio. O arquivo `roteiro-de-apresentacao.md` orienta quem
 apresenta com sugestões de fala e respostas para dúvidas comuns. A versão de uma
 página continua disponível em `showroom-digital-resumido.pdf`.
+
+Capturas e PDFs são estáticos e podem mostrar a Home anterior ao hero atual.
+Esta revisão do texto não regenerou esses arquivos; personalize e confira o
+material antes de usar com outra loja, conforme [README.md](README.md).

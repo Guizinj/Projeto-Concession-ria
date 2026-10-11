@@ -1,4 +1,71 @@
-# Validação — Etapa 1
+# Validação — estado atual e histórico
+
+Atualizado em **11/10/2026**, na organização da documentação para personalizar e
+entregar o showroom. Os registros abaixo são evidências da versão/data de cada
+etapa: não devem ser lidos como inventário permanente ou validação automática
+de outra loja. O estado de retomada está em [CONTINUIDADE.md](CONTINUIDADE.md).
+
+## Revisão documental e personalização — 11/10/2026
+
+- Criados [AGENTS.md](AGENTS.md) e [PERSONALIZACAO.md](PERSONALIZACAO.md).
+  Todos os nove Markdown preexistentes foram revisados. README e continuidade
+  consolidados; design, banco, apresentação e backup alinhados ao estado atual.
+- Guia de edição identifica `js/config.js`, hero/foto, cores, favicon,
+  metadados/fallbacks HTML e WhatsApp sem JavaScript. Uma instalação por loja:
+  cópia do site + projeto Supabase separado, sem mudança da arquitetura.
+- **31 testes locais passaram** nesta revisão, sem chamadas ao Supabase real.
+  Aplicação, SQL, configuração, imagens, backup e PDFs foram preservados;
+  nenhum deploy, alteração remota ou envio a terceiros.
+- Comparação SHA-256 confirmou **66 arquivos de aplicação/banco/apresentação
+  inalterados**. Os **11 documentos Markdown** foram conferidos em UTF-8 e
+  seus **50 links locais** apontam para arquivos/pastas existentes.
+  `git diff --check` passou; Git apenas informou conversão futura de LF para CRLF.
+- PDFs/capturas da apresentação não foram regenerados; podem mostrar o hero
+  anterior. Revisão de Markdown não altera esses artefatos.
+
+Comando executado com Node 24:
+
+```text
+node --test tests/dados.test.mjs tests/catalogo-url.test.mjs tests/explorar.test.mjs tests/explorar-vertical.test.mjs tests/galeria.test.mjs tests/vehicle-links.test.mjs tests/store-map.test.mjs tests/contact-message.test.mjs tests/contact-context.test.mjs
+```
+
+## Ajustes anteriores desta sessão, agora documentados
+
+Hero: texto sobre a foto local do Civic e altura compacta conferidos no Chrome
+em 320/360/390/768/1024/1440 px, sem overflow, foto carregada, busca abaixo,
+links e validação de busca. O ajuste posterior do botão Explorar para padding
+equivalente, fundo suave e seta diagonal do estoque teve conferência estática;
+não foi executada nova regressão completa de navegador para esse ajuste.
+
+Limpar filtros: QA específico anterior em 390/1440 px com cliques reais e
+respostas simuladas do catálogo. Reset limpou campos/URL, manteve foco na busca
+e preservou scroll (tolerância de 1 px); Aplicar filtros continuou revelando
+resultados e focando seu título. `node --check js/pages/estoque.js`, três testes
+de catálogo e `git diff --check` passaram na entrega dessa correção.
+Scripts/capturas dessa QA ficaram no diretório temporário e não são dependências
+do site ou artefatos de publicação.
+
+## Como validar cada loja antes da entrega
+
+Siga a [checklist de personalização](PERSONALIZACAO.md). Confira identidade,
+conexão com banco do cliente, estoque/fotos, WhatsApp, mapa e HTML sem JS.
+Teste as cinco páginas, buscas/filtros/URL/paginação, gestos/galeria, estados,
+foco/teclado e movimento reduzido em 360/390/768/1440 px; hero também em 320 px.
+Inspecione mensagens/destinos de contato sem enviar testes a terceiros.
+
+QA de navegador existente: `tests/galeria-browser.mjs`, `tests/etapa6-browser.mjs`,
+`tests/etapa7-browser.mjs` e `tests/localizacao-browser.mjs`. Precisam de servidor
+HTTP e Chrome isolado com depuração local; leia os cabeçalhos para a porta e
+`QA_PORT` onde suportado. `QA_REAL=1` inclui leituras reais quando previsto e
+depende do banco/fixtures; scripts antigos podem pressupor layouts anteriores.
+
+Etapa 7 segue em revisão; sem publicação. Aparelhos físicos, Safari, leitor de
+tela e domínio final não foram validados nesta revisão. Testes históricos de
+Chrome emulado não substituem a conferência da instalação de cada cliente.
+
+---
+
+# Histórico — Validação da Etapa 1
 
 Verificação realizada em **09/10/2026**, usando o Live Server instalado no VS Code
 e **Chrome 154.0.8037.98** em modo headless, com perfil temporário isolado.

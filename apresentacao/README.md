@@ -2,6 +2,10 @@
 
 Material para apresentar o showroom digital a donos de concessionárias e showrooms, com uma narrativa que conecta a rotina da loja aos recursos implementados.
 
+Orientações revisadas em 11/10/2026. Para adaptar o site e preparar a entrega,
+comece no [guia de personalização](../PERSONALIZACAO.md). O arquivo principal da
+loja é `../js/config.js`; este material comercial tem edição independente.
+
 ## Arquivos
 
 - `showroom-digital.pdf`: apresentação principal, com cinco páginas A4.
@@ -9,7 +13,7 @@ Material para apresentar o showroom digital a donos de concessionárias e showro
 - `roteiro-de-apresentacao.md`: sugestões de fala, perguntas para o dono da loja, demonstração por página e respostas para dúvidas comuns. Material de apoio para quem apresenta.
 - `resumo.md`: resumo editável do projeto e do escopo atual.
 - `resumida.html`, `resumida.css` e `showroom-digital-resumido.pdf`: versão anterior, de uma página, preservada para um envio breve.
-- `assets/`: capturas reais da Home, Explorar e ficha, feitas em 11/10/2026. Imagens estáticas; preços e estoque podem mudar.
+- `assets/`: capturas reais da Home, Explorar e ficha, feitas em 11/10/2026. Imagens estáticas; preços e estoque podem mudar. A Home capturada pode anteceder o hero atual sobre a foto.
 
 ## Sequência da apresentação
 
@@ -26,6 +30,18 @@ O PDF é para o possível cliente. O roteiro separado é para orientar a convers
 Acesse `http://127.0.0.1:5500/apresentacao/` pelo Live Server, ou abra `index.html` diretamente. O material usa apenas arquivos locais, sem consultas ao banco, fontes externas ou serviços de terceiros.
 
 Depois de editar, use **Imprimir / salvar PDF**, papel **A4**, escala **100%**, sem cabeçalhos e rodapés do navegador e com gráficos de fundo. O CSS divide o conteúdo em cinco páginas e oculta os controles. Confira as quebras antes de substituir `showroom-digital.pdf`.
+
+Para a versão resumida, abra `resumida.html`, confira a impressão em uma página
+e salve como `showroom-digital-resumido.pdf` com as mesmas opções.
+
+Editar `resumo.md` ou o roteiro não atualiza o HTML nem os PDFs. Editar
+`js/config.js` também não troca a marca, logo ou capturas nesta pasta. Para outra
+loja, revise os dois HTMLs, os textos de apoio, as imagens e gere os PDFs novamente.
+Confira dados pessoais/comerciais e o conteúdo antes de entregar ao cliente.
+
+Nesta revisão apenas a documentação foi atualizada: PDFs, HTMLs e capturas
+anteriores foram preservados. O material não constitui validação de uma implantação
+nova. A checklist está no guia; evidências técnicas em [VALIDACAO.md](../VALIDACAO.md).
 
 ## Escopo
 

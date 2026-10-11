@@ -1,6 +1,12 @@
-# Etapa 2 — Banco e fotografias
+# Banco e fotografias — instalação e cadastro
 
-Use o projeto **CARROS**. Os scripts foram preparados para um projeto novo,
+Atualizado em 11/10/2026. **CARROS é o projeto demonstrativo já instalado**:
+não repetir `schema.sql` nele. Para outra loja, use um projeto Supabase separado,
+troque a conexão em `js/config.js` e siga [PERSONALIZACAO.md](../PERSONALIZACAO.md).
+O schema atual atende uma loja por instalação, sem isolamento de várias lojas
+no mesmo banco. Nome da marca não filtra os anúncios.
+
+Os scripts foram preparados para um projeto novo,
 com Data API habilitada, esquema `public` exposto, exposição automática de
 novas tabelas desligada e RLS automático habilitado. RLS também é ativada
 explicitamente em cada tabela do showroom.
@@ -10,7 +16,9 @@ e enviou as imagens para `veiculos/demo/`. Foram verificados 14 itens nas
 listas, paginação de 12 + 2, rascunho oculto por RLS, download das três imagens,
 bloqueio de escrita pública nas tabelas/upload no Storage e consultas no
 navegador sem erros de CORS. Os resultados estão em [VALIDACAO.md](../VALIDACAO.md).
-O roteiro abaixo permanece como referência de instalação e cadastro.
+Essas quantidades registram a validação do seed na época, não o inventário atual.
+O roteiro abaixo serve para instalação em banco novo e cadastro. Não houve nova
+execução de SQL, escrita remota ou upload nesta revisão documental.
 
 O site não usa Supabase Auth. Cadastros, login anônimo e vinculação manual
 podem continuar desativados. A administração fica no Dashboard com sua conta.
@@ -18,7 +26,8 @@ A MFA dessa conta protege o acesso administrativo; RLS protege os dados da API.
 
 ## Ordem de execução no Dashboard
 
-1. Entre em **CARROS → SQL Editor → New query**.
+1. Entre no **projeto novo da loja → SQL Editor → New query**. Confira o projeto
+   selecionado; não executar a primeira instalação no demonstrativo existente.
 2. Copie todo o conteúdo de [schema.sql](schema.sql), confira o projeto e
    execute como `postgres`. A transação cria as duas tabelas, índices,
    permissões de leitura, RLS, trigger de data e bucket `veiculos`.
@@ -49,7 +58,7 @@ Uploads são pelo Dashboard; nunca insira metadados diretamente em
 
 ## Verificar a leitura pela prévia
 
-Com o Live Server aberto, use **F12 → Console** em uma das quatro páginas:
+Com o Live Server aberto, use **F12 → Console** em uma das cinco páginas:
 
 ```js
 const dados = await import("./js/veiculos.js");
@@ -116,8 +125,8 @@ Em `veiculo_imagens`, preencha:
 - `principal`: `true` para a capa; no máximo uma por veículo.
 
 Sem uma imagem principal, as listas usarão a primeira por ordem. Sem metadados,
-o cliente retorna `imagem_capa: null`; o componente de imagem substituta será
-feito na etapa de componentes. As imagens públicas não precisam de chave na URL.
+o cliente retorna `imagem_capa: null`; o componente existente mostra “Foto em breve”.
+Falhas de download têm fallback próprio. As imagens públicas não precisam de chave na URL.
 
 Revise ficha, imagens e preço antes de publicar. Preserve o slug depois da
 publicação, inclusive quando alterar preço ou descrição, para manter links.
@@ -149,6 +158,9 @@ revise separadamente permissões, RLS e políticas de Storage; não copie uma
 permissão de escrita pública para facilitar o cadastro.
 
 ## Referências oficiais
+
+Links de referência da implementação original; esta revisão atualiza a orientação
+de uso do repositório, sem nova verificação de documentação externa.
 
 - [Chaves públicas e cabeçalho apikey](https://supabase.com/docs/guides/getting-started/api-keys).
 - [Permissões e RLS na Data API](https://supabase.com/docs/guides/api/securing-your-api).
