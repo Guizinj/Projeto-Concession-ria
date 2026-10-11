@@ -1,6 +1,6 @@
 # Continuidade — Showroom Digital Automotivo
 
-Atualizado em **11/10/2026**, após revisar o visual de detalhes, o enquadramento das fotos e o menu de compartilhamento da Etapa 7.
+Atualizado em **11/10/2026**, após ajustar a navegação do Explorar, as mensagens do WhatsApp e o acesso Contato na Etapa 7.
 
 ## Ponto de retomada
 
@@ -9,7 +9,55 @@ Em 10/10/2026, o usuário autorizou seguir para a Etapa 7 e informou o contato
 `81993369736`, cadastrado como `5581993369736` (+55 81 99336-9736).
 Não iniciar a Etapa 8 sem aprovação. Nenhum deploy foi realizado.
 
-**Revisão mais recente — página do veículo:** `veiculo.html` segue o visual
+**Revisão mais recente — quatro ajustes:** navegação flutuante do Explorar em
+azul escuro (#121722), com item ativo azul (#2454d6) e texto claro, no celular
+e desktop. Demais barras preservadas. Contato direto na localização usa verde
+suave, com texto/ícone escuros para legibilidade. Menu agora tem cinco destinos,
+incluindo Contato → `localizacao.html#contato-titulo`, com indicação de seção
+ativa, rolagem/foco no formulário tanto na mesma página quanto ao chegar de outra.
+
+`js/contact-context.js` centraliza mensagens breves para cabeçalho, menu,
+rodapé, contato direto e visita, conforme página/origem. Na ficha carregada,
+esses acessos reutilizam a mensagem do anúncio com identidade, status e URL.
+O formulário mantém a mensagem personalizada; o contato sem JS também tem
+texto preenchido. Usuário confirma o envio no WhatsApp; nenhuma mensagem foi
+enviada durante a implementação. Textos ajustados pelo usuário, incluindo
+“Fale Conosco.”, foram preservados.
+
+31 testes locais, sintaxe dos 29 JS, regressões completas de Localização e
+Etapa 7, mais QA de cinco páginas × quatro larguras passaram. Contato entre
+páginas/na mesma página, foco, seção ativa, tela curta e movimento reduzido
+conferidos. Capturas temporárias em `vertice-captures-contexto-nav-11-10`.
+Configuração/cliente GET/consultas/fila/schema conservam os hashes; banco,
+RLS e Storage preservados. Chrome isolado encerrado; Live Server mantido.
+Etapa 7 em revisão, sem Etapa 8/deploy. Mobile emulado em Chrome.
+
+**Revisão anterior — Localização e contato:** a pedido do usuário, somente
+a página `localizacao.html` foi reformulada. Introdução/WhatsApp e CTA de test
+drive ao lado do formulário no desktop; conteúdo empilhado no celular. A área
+de visita abaixo reúne endereço, mapa, rota e agendamento direto. Header,
+navegação flutuante, menu/rodapé existentes e demais páginas preservados.
+
+Formulário funcional com nome, assunto, veículo opcional e mensagem. Visita/test
+drive revelam dia de preferência opcional, limitado a hoje ou depois. CTA de
+test drive seleciona o assunto, prepara uma mensagem inicial se o campo estiver
+vazio e rola suavemente ao formulário, sem apagar rascunhos. O formulário faz
+GET nativo para o WhatsApp validado, em nova aba com `noopener noreferrer`,
+enviando só o parâmetro `text`. Usuário confere/confirma o envio no WhatsApp;
+não representa reserva confirmada. Sem email inventado, serviço de envio,
+armazenamento de contatos, consultas ao estoque ou novas credenciais.
+Nome/mensagem vazios e tamanhos/assuntos/datas inválidos são bloqueados.
+Formulário oculto até inicializar; sem JS há links de contato e mapa funcionais.
+
+29 testes locais, sintaxe dos 28 JS e QA específico `tests/localizacao-browser.mjs`
+passaram em 360/390/768/1440 px e tela curta 390×640. Verificados formulário,
+payload (submit interceptado, sem conversa ou mensagem enviada), teclado/foco,
+rolagem suave/movimento reduzido, retorno pelo cache, mapa/fallback e sem JS.
+Capturas temporárias: `vertice-captures-localizacao-contato-11-10`, revisadas.
+Hashes dos cinco arquivos protegidos idênticos. Chrome isolado encerrado;
+Live Server mantido. Etapa 7 aguarda revisão desta página; sem deploy/Etapa 8.
+
+**Revisão aprovada — página do veículo:** `veiculo.html` segue o visual
 direto da Home/Estoque: fundo branco, título compacto, galeria em destaque,
 resumo com ano/quilometragem/câmbio e ficha sem cartões em cada seção. Fotos
 usam proporção 4:3 e `object-fit: cover`, eliminando faixas laterais; imagens

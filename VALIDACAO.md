@@ -1134,3 +1134,74 @@ WhatsApp. Mantidos payloads, avisos de status, segurança de texto/URLs e feedba
 Banco, RLS e Storage preservados. Nenhum deploy. Mobile emulado em Chrome;
 aparelhos físicos, Safari e leitor de tela não verificados nesta revisão.
 Chrome isolado encerrado; Live Server mantido. **Etapa 7 em revisão; Etapa 8 não iniciada.**
+## Revisão de 11/10/2026 — Reformulação de Localização e contato
+
+Mudança restrita à página de localização, seus estilos/módulo e novo helper de
+mensagem, além de testes/documentação. Demais páginas, componentes compartilhados
+e configuração do Supabase preservados. Formulário usa o WhatsApp cadastrado;
+não há serviço de email, envio automático, gravação de contatos ou reserva confirmada.
+
+- **29 testes locais** passaram, incluindo três testes novos de mensagem:
+  validação de nome/mensagem/tamanhos/assunto, texto/URL codificados sem alterar
+  destino, data opcional, calendário válido, data passada e preferência a confirmar.
+  Sintaxe dos **28 JS** e dos dois novos scripts de testes conferida.
+- QA `tests/localizacao-browser.mjs` em **360/390/768/1440 px**: sem overflow,
+  telefone/link oficiais, formulário rotulado e alvos de pelo menos 44 px.
+  Mapas com host validado, lazy loading, endereço fornecido e fallback seguros.
+  Capturas de contato e área de visita revisadas visualmente no Chrome.
+- CTA test drive escolhe assunto, revela data, preenche texto inicial apenas se
+  estiver vazio e rola suavemente/foca o título do formulário. Tab alcança o nome.
+  Link de mapa rola/foca endereço. Movimento reduzido usa rolagem instantânea.
+- Submit nativo **interceptado antes de navegar**: action exata para WhatsApp
+  cadastrado, nova aba com `noopener noreferrer`, um único parâmetro `text`, nome
+  normalizado, assunto, veículo e dia de preferência com aviso de confirmação.
+  Não foi aberta conversa ou enviada mensagem. Renderização de texto segura;
+  dados contendo `&`, `?` e `#` não mudam o destino.
+- Vazio/espaços são bloqueados; digitar novamente recupera validade. Data passada
+  bloqueada; data vazia aceita. Outro assunto oculta/desabilita/limpa a data.
+  CTA preserva rascunho existente. Retorno pelo cache remove texto preparado
+  oculto, conservando os campos visíveis e atualizando a data mínima.
+- Tela **390×640**: menu indica localização, Escape fecha, rodapé alcançável acima
+  da navegação flutuante. Sem JS, formulário permanece oculto e há contato direto
+  e link de mapa funcionais. Página não faz consultas REST ao estoque.
+- Nenhum erro de console/imports ou arquivo local ausente. Cinco hashes de
+  configuração, cliente GET, consultas, fila e schema idênticos aos anteriores.
+
+Capturas em `vertice-captures-localizacao-contato-11-10`, no diretório temporário
+Windows. Mobile emulado; aparelhos físicos, Safari/leitor de tela e envio final
+real no WhatsApp não foram verificados. Chrome isolado encerrado; Live Server
+mantido para revisão. Sem alterações de banco/RLS/Storage ou deploy.
+**Etapa 7 em revisão; Etapa 8 não iniciada.**
+## Revisão de 11/10/2026 — Explorar azul, mensagens e menu Contato
+
+Quatro ajustes solicitados: barra azul escura no Explorar, mensagens de contexto
+em todos os acessos ao WhatsApp, Contato no menu para o formulário e contato
+direto verde suave. Valores de configuração e textos editados pelo usuário preservados.
+
+- **31 testes locais** passaram, incluindo contexto por página/origem, destino
+  validado, mensagem breve, estado de disponível/reservado/vendido, URL do anúncio,
+  base em subpasta, origem desconhecida e telefone inválido. Sintaxe dos **29 JS**
+  e QA ajustados conferida.
+- Regressão completa `localizacao-browser.mjs`: quatro larguras, formulário/CTA,
+  datas/rascunho, payload nativo interceptado, teclado/foco, movimento reduzido,
+  ciclo de vida, mapa/fallback, tela curta e contato com texto sem JS.
+- Regressão completa `etapa7-browser.mjs`: contatos de header/menu/footer na ficha
+  agora iguais à mensagem do veículo nos três status; URLs e texto seguros,
+  compartilhamento/cópia/concorrência, feedback de três segundos, Clipboard real,
+  falhas/cancelamentos e APIs ausentes. Sem conversa aberta ou mensagem enviada.
+- QA específico de **cinco páginas × 360/390/768/1440 px**: sem overflow; todos
+  os links de WhatsApp mantêm o número cadastrado, um parâmetro `text` preenchido
+  e `noopener noreferrer`. Explorar tem fundo navy/ativo azul e respeita os limites
+  do feed/barra; localização tem botão verde. Menu com cinco destinos.
+- Contato pelo menu da Home abre a seção do formulário, com foco e rolagem suave
+  abaixo do header; reabrir indica a seção ativa. Na própria página, o atalho
+  preserva o documento e volta ao formulário sem recarga. Explorar → Contato
+  em 390×640 mantém menu dentro da tela; movimento reduzido usa rolagem instantânea.
+- Capturas mobile/desktop da barra, contato verde e menu revisadas visualmente,
+  em `vertice-captures-contexto-nav-11-10`, no diretório temporário do Windows.
+  Nenhum erro de console/imports ou arquivo local ausente nos QA concluídos.
+
+Os cinco hashes protegidos continuam idênticos. Sem escrita em banco/RLS/Storage,
+envio de mensagem ou deploy. Chrome isolado encerrado; Live Server mantido.
+Mobile emulado em Chrome; aparelhos físicos, Safari e leitor de tela não verificados.
+**Etapa 7 em revisão; Etapa 8 não iniciada.**

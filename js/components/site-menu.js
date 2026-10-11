@@ -1,5 +1,5 @@
 ﻿import { config } from "../config.js";
-import { whatsappUrl } from "../vehicle-links.js";
+import { contactContextUrl } from "../contact-context.js";
 import { createIcon } from "./icons.js";
 import { scrollToSection } from "./navigation.js";
 
@@ -10,6 +10,7 @@ const destinations = [
   ["Estoque", "estoque.html", "grid", "Encontre o seu próximo carro"],
   ["Explorar", "explorar.html", "compass", "Veja os veículos no seu ritmo"],
   ["Localização", "localizacao.html", "pin", "Venha conhecer a loja"],
+  ["Contato", "localizacao.html#contato-titulo", "message", "Converse com a equipe"],
 ];
 
 function element(tag, className, text) {
@@ -65,7 +66,7 @@ export function initializeSiteMenu() {
     shortcuts.append(link);
   }
   body.append(shortcuts);
-  const contactUrl = whatsappUrl(config.loja.whatsapp);
+  const contactUrl = contactContextUrl(config.loja.whatsapp, { page: location.pathname, source: "menu" });
   if (contactUrl) {
     const contact = element("a", "site-menu-contact");
     contact.href = contactUrl; contact.target = "_blank"; contact.rel = "noopener noreferrer";

@@ -108,7 +108,7 @@ try {
       assert.equal(text.includes("tracking"), false);
       assert.equal(await evaluate("document.querySelector('.vehicle-whatsapp-action').rel"), "noopener noreferrer");
       assert.equal(await evaluate("!!document.querySelector('.vehicle-status-notice')"), status !== "disponivel");
-      assert.equal(await evaluate("document.querySelector('[data-contact-link]').href"), "https://wa.me/5581993369736");
+      assert.equal(await evaluate("[...document.querySelectorAll('[data-contact-link],.site-menu-contact')].every(link=>link.href===document.querySelector('.vehicle-whatsapp-action').href)"), true);
       assert.equal(await evaluate("document.querySelector('[data-contact-placeholder]').hidden"), true);
       assert.equal(await evaluate("[...document.querySelectorAll('.vehicle-actions a,.vehicle-actions button')].filter(el=>el.getClientRects().length).every(el=>el.getBoundingClientRect().height>=44)"), true);
       assert.equal(await evaluate("document.querySelector('.vehicle-share-actions').hidden && document.querySelector('.vehicle-share-toggle').getAttribute('aria-expanded')==='false'"), true);
@@ -194,7 +194,7 @@ try {
   for (const path of ["index.html", "estoque.html", "explorar.html"]) {
     await open(path);
     if (path === "explorar.html") assert.equal(await evaluate("document.querySelector('.site-header,.header-contact,[data-contact-link]')===null"), true);
-    else assert.equal(await evaluate("!document.querySelector('[data-contact-link]').hidden && document.querySelector('[data-contact-link]').href==='https://wa.me/5581993369736'"), true);
+    else assert.equal(await evaluate("[...document.querySelectorAll('[data-contact-link],.site-menu-contact')].every(link=>{const u=new URL(link.href);return !link.hidden&&u.origin==='https://wa.me'&&u.pathname==='/5581993369736'&&!!u.searchParams.get('text')})"), true);
   }
   assert.equal(await evaluate("[...document.querySelectorAll('[data-instagram-link]')].every(link=>link.hidden)"), true);
   assert.equal(await evaluate("window.calls.every(call=>call.method==='GET')"), true);

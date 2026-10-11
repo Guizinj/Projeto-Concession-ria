@@ -1,5 +1,5 @@
 import { config } from "../config.js";
-import { whatsappUrl } from "../vehicle-links.js";
+import { contactContextUrl } from "../contact-context.js";
 
 export function mapEmbedUrl(value) {
   if (typeof value !== "string" || value.length > 5000) return null;
@@ -22,7 +22,7 @@ export function initializeStoreLocation(root = document, store = config.loja) {
   }
   if (placeholder) placeholder.hidden = !!url;
 
-  const visitUrl = whatsappUrl(store.whatsapp, "Olá! Gostaria de agendar uma visita à loja para conhecer os veículos e saber sobre um test drive.");
+  const visitUrl = contactContextUrl(store.whatsapp, { source: "visit" });
   root.querySelectorAll("[data-visit-link]").forEach(link => {
     link.hidden = !visitUrl;
     if (visitUrl) link.href = visitUrl;

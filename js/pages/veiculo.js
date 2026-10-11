@@ -78,7 +78,7 @@ async function load() {
     title.textContent = name;
     version.textContent = typeof vehicle.versao === "string" ? vehicle.versao.trim() : "";
     version.hidden = !version.textContent;
-    initializeLayout(`${name}${version.textContent ? ` ${version.textContent}` : ""}`);
+    initializeLayout(`${name}${version.textContent ? ` ${version.textContent}` : ""}`, { vehicle });
     replace(area, createVehicleDetails(vehicle));
     similarSection.hidden = false;
     loadSimilar(vehicle, current);

@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Encontre a Vértice Motors em Caruaru. Veja nossa localização e converse com a equipe para agendar uma visita ou test drive.">
+    <meta name="description" content="Fale com a Vértice Motors, agende um test drive e encontre nossa loja em Caruaru. Prepare sua mensagem e continue o atendimento pelo WhatsApp.">
     <meta name="theme-color" content="#f6f7f9">
-    <title>Localização | Vértice Motors</title>
+    <title>Localização e contato | Vértice Motors</title>
     <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="./css/global.css">
     <link rel="stylesheet" href="./css/components.css">
@@ -36,26 +36,86 @@
     </header>
 
     <main class="container page-main location-main" id="conteudo" tabindex="-1">
-      <div class="location-heading">
-        <h1 id="localizacao-titulo" tabindex="-1">Localização</h1>
-        <p>Endereço e rota para visitar nossa loja.</p>
-      </div>
-      <section class="location-grid" aria-labelledby="endereco-titulo">
-        <div class="location-card">
-          <div class="location-label"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#pin"></use></svg><h2 id="endereco-titulo">Nossa loja</h2></div>
-          <address class="location-address" data-store-address>Rua Visconde de Inhaúma, 451 — Maurício de Nassau, Caruaru — PE, 55012-010</address>
-          <div class="location-actions">
-            <a class="button button-primary" data-maps-link href="https://share.google/Xnrqm8YwgTy9JIsH1" target="_blank" rel="noopener noreferrer">Traçar rota <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#arrow-up-right"></use></svg></a>
-            <a class="button button-outline" data-visit-link hidden target="_blank" rel="noopener noreferrer">Agendar visita <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#message"></use></svg></a>
-          </div>
-          <div class="location-visit"><h3>Quer fazer um test drive?</h3><p class="location-note">Combine sua visita pelo WhatsApp e consulte a disponibilidade do carro com a equipe.</p></div>
+      <div class="location-contact-grid">
+        <div class="location-intro">
+          <p class="location-kicker">Localização e contato</p>
+          <h1 id="localizacao-titulo" tabindex="-1">Fale Conosco.</h1>
+          <p class="location-lead">Quer saber mais sobre um veículo ou combinar uma visita? Converse com a equipe da <span data-brand-name>Vértice Motors</span>.</p>
+          <a class="location-direct-contact" data-location-contact hidden target="_blank" rel="noopener noreferrer">
+            <span class="location-contact-symbol"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#message"></use></svg></span>
+            <span><span class="location-contact-label">Converse pelo WhatsApp</span><strong data-location-phone></strong></span>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#arrow-up-right"></use></svg>
+          </a>
+          <a class="location-map-shortcut text-link" href="#endereco-titulo">Ver endereço e mapa <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#arrow-right"></use></svg></a>
+          <section class="location-test-drive" aria-labelledby="test-drive-titulo">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#car"></use></svg>
+            <h2 id="test-drive-titulo">Conheça o carro <br>de perto.</h2>
+            <p>Agende um test drive e tire suas dúvidas com a equipe antes de decidir.</p>
+            <a class="button button-primary" href="#contato-titulo" data-test-drive-cta>Agendar test drive <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#arrow-up-right"></use></svg></a>
+            <span class="location-test-drive-note">A equipe confirma a disponibilidade do veículo e o agendamento.</span>
+          </section>
         </div>
-        <div class="location-map">
-          <iframe data-store-map hidden title="Mapa da localização da concessionária" width="800" height="480" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          <div class="location-map-placeholder" data-store-map-placeholder>
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#pin"></use></svg>
-            <p>Consulte a localização da loja.</p>
-            <a class="text-link" data-maps-link href="https://share.google/Xnrqm8YwgTy9JIsH1" target="_blank" rel="noopener noreferrer">Abrir no Google Maps</a>
+
+        <section class="location-contact-panel" aria-labelledby="contato-titulo">
+          <div class="location-form-heading">
+            <h2 id="contato-titulo" tabindex="-1">Como podemos ajudar?</h2>
+            <p>Deixe sua mensagem para começar a conversa.</p>
+          </div>
+          <form id="location-contact-form" class="location-contact-form" method="get" target="_blank" rel="noopener noreferrer" aria-describedby="contact-form-note" hidden>
+            <input type="hidden" name="text" id="contact-prepared-message" disabled>
+            <div class="location-form-field">
+              <label for="contact-name">Seu nome <span aria-hidden="true">*</span></label>
+              <input id="contact-name" type="text" autocomplete="name" placeholder="Como podemos chamar você?" required minlength="2" maxlength="80">
+            </div>
+            <div class="location-form-field">
+              <label for="contact-subject">Sobre o que quer conversar?</label>
+              <select id="contact-subject">
+                <option value="vehicle">Tenho interesse em um veículo</option>
+                <option value="test-drive">Quero agendar um test drive</option>
+                <option value="visit">Quero visitar a loja</option>
+                <option value="other">Tenho outra dúvida</option>
+              </select>
+            </div>
+            <div class="location-form-field">
+              <label for="contact-vehicle">Veículo de interesse <span class="location-field-optional">(opcional)</span></label>
+              <input id="contact-vehicle" type="text" maxlength="100" placeholder="Ex.: Chevrolet Onix LTZ">
+            </div>
+            <div class="location-form-field" id="contact-date-field" hidden>
+              <label for="contact-date">Dia de preferência <span class="location-field-optional">(opcional)</span></label>
+              <input id="contact-date" type="date" aria-describedby="contact-date-note">
+              <p id="contact-date-note" class="location-field-note">A data será combinada com a equipe. Isso ainda não é uma reserva.</p>
+            </div>
+            <div class="location-form-field">
+              <label for="contact-message">Sua mensagem <span aria-hidden="true">*</span></label>
+              <textarea id="contact-message" rows="4" required minlength="10" maxlength="1000" placeholder="Conte o que você gostaria de saber."></textarea>
+              <span class="location-field-note">* Campos obrigatórios</span>
+            </div>
+            <p class="location-form-feedback" id="contact-form-feedback" role="status" hidden></p>
+            <button class="button button-primary location-form-submit" type="submit">Continuar no WhatsApp <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#message"></use></svg></button>
+            <p class="location-form-note" id="contact-form-note">Sua mensagem será preenchida no WhatsApp. Você confere e confirma o envio por lá.</p>
+          </form>
+          <p class="location-form-unavailable" id="contact-form-unavailable">Use o contato direto para conversar com a loja.</p>
+          <noscript><a class="button button-primary" href="https://wa.me/5581993369736?text=Ol%C3%A1%21%20Gostaria%20de%20tirar%20uma%20d%C3%BAvida%20com%20a%20equipe%20da%20loja." target="_blank" rel="noopener noreferrer">Conversar no WhatsApp</a></noscript>
+        </section>
+      </div>
+
+      <section class="location-visit-section" aria-labelledby="endereco-titulo">
+        <div class="location-visit-heading"><h2 id="endereco-titulo" tabindex="-1">Venha nos visitar.</h2><p>Veja os veículos e converse com a equipe na loja.</p></div>
+        <div class="location-grid">
+          <div class="location-card">
+            <p class="location-label"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#pin"></use></svg>Nosso endereço</p>
+            <h3 data-brand-name>Vértice Motors</h3>
+            <address class="location-address" data-store-address>Rua Visconde de Inhaúma, 451 — Maurício de Nassau, Caruaru — PE, 55012-010</address>
+            <a class="button button-secondary location-route" data-maps-link href="https://share.google/Xnrqm8YwgTy9JIsH1" target="_blank" rel="noopener noreferrer">Traçar rota até a loja <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#arrow-up-right"></use></svg></a>
+            <div class="location-visit-note"><p>Prefere combinar antes?</p><a class="text-link" data-visit-link hidden target="_blank" rel="noopener noreferrer">Agendar uma visita <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#arrow-right"></use></svg></a></div>
+          </div>
+          <div class="location-map">
+            <iframe data-store-map hidden title="Mapa da localização da concessionária" width="800" height="480" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="location-map-placeholder" data-store-map-placeholder>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="./assets/icons/sprite.svg#pin"></use></svg>
+              <p>Consulte a localização da loja.</p>
+              <a class="text-link" data-maps-link href="https://share.google/Xnrqm8YwgTy9JIsH1" target="_blank" rel="noopener noreferrer">Abrir no Google Maps</a>
+            </div>
           </div>
         </div>
       </section>

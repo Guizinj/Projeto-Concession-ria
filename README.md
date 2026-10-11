@@ -70,14 +70,14 @@ Não é necessário instalar Node.js para abrir ou desenvolver o site.
 | Estoque | `http://127.0.0.1:5500/estoque.html` |
 | Explorar | `http://127.0.0.1:5500/explorar.html` |
 | Detalhes | `http://127.0.0.1:5500/veiculo.html?carro=demo-corolla-xei-2022-001` |
-| Localização | `http://127.0.0.1:5500/localizacao.html` |
+| Localização e contato | `http://127.0.0.1:5500/localizacao.html` |
 
 O menu principal tem Início, Estoque e Explorar. Detalhes é acessado pelo link
 individual de cada card. O parâmetro `carro` abre a ficha completa, incluindo
 galeria, preço, disponibilidade, descrição, equipamentos e semelhantes.
 
 As cinco páginas têm menu hambúrguer de três traços com ícones e descrições: Início,
-Estoque, Explorar e Localização, atalho para Destaques e WhatsApp.
+Estoque, Explorar, Localização e Contato, atalho para Destaques e WhatsApp.
 No celular, desliza pela lateral direita e ocupa a altura da tela. A partir de
 768 px, mantém o painel compacto próximo ao botão, conforme a revisão aprovada.
 Fecha com
@@ -93,8 +93,11 @@ com três destinos e destaque azul. No desktop, a navegação dos headers usa
 cápsula discreta; marca e contato têm resposta visual suave. Os traços do menu
 têm 2 px de espessura e espaçamento de 4 px. No Explorar, a cápsula flutuante
 permanece também no desktop; o feed reserva espaço para não cobrir seus controles.
-Localização usa título curto e conjunto único de endereço/rota/agendamento/mapa:
-endereço acima do mapa no celular; mapa à esquerda e endereço à direita no desktop.
+Localização e contato reúne atendimento direto, CTA de test drive e formulário
+para preparar a conversa pelo WhatsApp. No desktop, introdução/CTA e formulário
+ficam lado a lado; no celular são empilhados. A área de visita abaixo reúne
+endereço, rota/agendamento e mapa: endereço acima no celular, mapa à esquerda
+no desktop. Header, navegação e rodapé existentes foram preservados.
 Selecionar a página atual retorna ao conteúdo sem recarregar; páginas têm fade
 de entrada e links/botões com resposta suave. A preferência por movimento
 reduzido desativa animações e suavidade da rolagem. Links HTML seguem funcionais.
@@ -122,10 +125,19 @@ nestes arquivos. A chave pública identifica o aplicativo; permissões e RLS
 definem o acesso aos dados. O cliente rejeita chaves de outros formatos.
 
 Sem WhatsApp válido, permanece **Contato em breve**. Com um número válido,
-aparece um link genérico `wa.me`; isso não verifica a existência da conta.
+aparece um link `wa.me` com mensagem breve conforme a página e o acesso; isso não verifica a existência da conta.
 O contato informado é **+55 (81) 99336-9736**, configurado como `5581993369736`.
 Links de mapa/Instagram ausentes ou fora de HTTPS ficam ocultos. A ficha oferece
 WhatsApp com mensagem específica, compartilhamento nativo e cópia do link.
+
+O formulário tem nome, assunto, veículo opcional e mensagem. Ao escolher visita
+ou test drive, mostra dia de preferência opcional. Agendar test drive seleciona
+esse assunto e rola ao formulário, preservando o que já foi escrito. Campos
+obrigatórios, tamanhos, assunto e data são validados. O botão Continuar no WhatsApp
+prepara um GET nativo para o número cadastrado, em nova aba com proteção do opener.
+Só o texto da mensagem é enviado como parâmetro; o usuário confirma o envio no
+WhatsApp. Não há envio de email, reserva automática, coleta em banco ou servidor
+de mensagens. Sem JavaScript, links diretos de contato e mapa continuam disponíveis.
 
 A página `localizacao.html` apresenta endereço, mapa interativo, “Como chegar”
 e WhatsApp para agendar visita/test drive. O ponto foi conferido no link enviado:
@@ -325,7 +337,7 @@ O site não exige ferramentas de teste para funcionar. Quem tiver Node.js 24
 pode repetir os testes locais, sem dependências e sem acessar o Supabase real:
 
 ```text
-node --test tests/dados.test.mjs tests/catalogo-url.test.mjs tests/explorar.test.mjs tests/explorar-vertical.test.mjs tests/galeria.test.mjs tests/vehicle-links.test.mjs tests/store-map.test.mjs
+node --test tests/dados.test.mjs tests/catalogo-url.test.mjs tests/explorar.test.mjs tests/explorar-vertical.test.mjs tests/galeria.test.mjs tests/vehicle-links.test.mjs tests/store-map.test.mjs tests/contact-message.test.mjs tests/contact-context.test.mjs
 ```
 
 As verificações de banco podem ser repetidas pelo SQL Editor com `validar.sql`.
@@ -366,3 +378,14 @@ Cada etapa termina com verificação e revisão; a próxima depende de aprovaç�
 
 Deploy depende de autorização específica. Prévias individuais avançadas de
 compartilhamento permanecem fora do MVP.
+
+A página de Localização e contato tem QA específico em `tests/localizacao-browser.mjs`,
+com Chrome isolado em 9340 (`QA_PORT` permite outra porta). Valida layout, formulário,
+CTA de test drive, datas, foco, mapa e alternativas sem JS. Intercepta o submit
+antes da navegação para conferir o payload, sem abrir conversa ou enviar mensagem.
+Na revisão de contato, o menu ganhou Contato, que abre `localizacao.html#contato-titulo`
+com foco e rolagem no formulário. A barra flutuante do Explorar usa fundo azul escuro
+com item ativo azul e texto claro; as outras páginas mantêm a barra clara.
+Contato direto na localização tem destaque verde suave. Mensagens de WhatsApp
+variam por página/origem; nos detalhes incluem o veículo, status e link, mantendo
+os avisos de reserva/venda. Formulário e contato sem JS também têm texto preenchido.

@@ -1,5 +1,5 @@
 import { config } from "../config.js";
-import { whatsappUrl } from "../vehicle-links.js";
+import { contactContextUrl } from "../contact-context.js";
 import { initializeSiteMenu } from "./site-menu.js";
 import { initializeInstitutionalFooter } from "./institutional-footer.js";
 import { initializeNavigation } from "./navigation.js";
@@ -28,7 +28,7 @@ function configureExternalLink(selector, value) {
   return !!url;
 }
 
-export function initializeLayout(pageTitle) {
+export function initializeLayout(pageTitle, { vehicle } = {}) {
   initializeSiteMenu();
   initializeInstitutionalFooter();
   initializeNavigation();
@@ -46,7 +46,10 @@ export function initializeLayout(pageTitle) {
     image.src = new URL(config.loja.logo, APP_URL).href;
   });
 
-  const contactReady = configureExternalLink("[data-contact-link]", whatsappUrl(config.loja.whatsapp));
+  const page = location.pathname;
+  const contactReady = configureExternalLink(".header-contact [data-contact-link]", contactContextUrl(config.loja.whatsapp, { page, source: "header", vehicle }));
+  configureExternalLink(".institutional-footer [data-contact-link]", contactContextUrl(config.loja.whatsapp, { page, source: "footer", vehicle }));
+  configureExternalLink(".site-menu-contact", contactContextUrl(config.loja.whatsapp, { page, source: "menu", vehicle }));
   document.querySelectorAll("[data-contact-placeholder]").forEach((button) => {
     button.hidden = contactReady;
   });

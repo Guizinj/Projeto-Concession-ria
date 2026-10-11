@@ -306,3 +306,35 @@ e código. Destaques/opcionais usam listas discretas com marcação azul. Ficha,
 descrição e equipamentos ficam separados por espaço/regras, sem cartões em
 cada seção. Resumo abaixo da foto no celular e ao lado a partir de 1024 px.
 Semelhantes, avisos e dados ausentes mantêm os estados existentes.
+## Revisão de 11/10/2026 — Localização e contato
+
+Reformulação restrita a `localizacao.html` e seus recursos. Fundo branco, tipografia
+forte e espaçamento amplo. Introdução/contato direto/CTA de test drive à esquerda
+e formulário com borda fina à direita a partir de 768 px; empilhados no celular.
+Bloco de test drive em azul claro, reutilizando o ícone de carro e botão azul.
+Formulário com rótulos associados, campos de 48 px e fonte de 16 px para evitar
+zoom automático em mobile. Nome e mensagem obrigatórios; veículo opcional.
+Assunto visita/test drive revela data opcional, com aviso de confirmação pela equipe.
+CTA seleciona test drive e rola ao título do formulário usando a navegação compartilhada;
+preserva mensagens existentes. Mensagem enviada como texto em GET para o WhatsApp
+validado, só após submit; usuário confirma o envio na conversa. Campos ocultos de
+preferência de data ficam desabilitados ao trocar para outro assunto.
+
+Seção de visita abaixo com título, endereço/rota/agendamento e mapa; quadro com
+cantos de 14 px, mapa à esquerda no desktop e abaixo no mobile, altura mínima
+352 px no mobile e 416 px no desktop. Iframe lazy e restrição de origem mantidos.
+Header, navegação, menu e rodapé compartilhados preservados, incluindo movimento
+reduzido e alvos de toque de pelo menos 44 px. Sem JS, há links diretos de contato
+no painel e do mapa no fallback. Dados de horários/email não foram inventados.
+## Revisão de 11/10/2026 — Navegação e contexto de contato
+
+Barra flutuante apenas no Explorar com fundo #121722, borda #2a354a e texto
+#b7c3d9; ativo #2454d6 com texto branco. Cápsula, alvos e reserva de espaço no
+feed preservados nas quatro larguras. Demais barras continuam claras.
+Contato direto na localização com fundo #e8f7ed, borda #c7e8d1 e texto #17663e;
+ícone em superfície branca e hover discreto. Mantido o título “Fale Conosco.”
+ajustado pelo usuário. Menu acrescenta Contato, quinto destino, com ícone de
+mensagem e URL para o título do formulário. Seção ativa usa `aria-current="location"`.
+Chegada de outra página foca/rola ao formulário; a própria página usa a navegação
+compartilhada. Movimento reduzido usa rolagem instantânea. WhatsApp ganha mensagens
+conforme página/origem; na ficha, reutiliza dados/status seguros do anúncio.
