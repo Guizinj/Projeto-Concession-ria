@@ -1,7 +1,7 @@
 # Continuidade — estado consolidado
 
-Atualizado em **11/10/2026**, após ajustes do hero, correção de Limpar filtros e
-organização da documentação para adaptar/vender o showroom a outras lojas.
+Atualizado em **12/10/2026**, após melhorar o swipe lateral das fotos na Home,
+Estoque e ficha. Hero, Limpar filtros e organização para outras lojas preservados.
 
 Este é o ponto atual de retomada. [VALIDACAO.md](VALIDACAO.md) preserva as evidências
 históricas; instruções antigas de implementação não descrevem páginas ainda provisórias.
@@ -32,6 +32,11 @@ Leia [AGENTS.md](AGENTS.md), [README.md](README.md), [PERSONALIZACAO.md](PERSONA
 - Estoque: texto “Conheca nosso estoque.” do usuário, filtros nativos, menor preço
   como padrão, URL compartilhável, debounce 300 ms, lotes de 12.
   Busca inválida não consulta nem desloca a página.
+- Swipe na Home, Estoque e ficha: Touch Events decidem o eixo cedo e mantêm a
+  intenção inicial até soltar o dedo. Lateral com desvio/curva não vira scroll;
+  vertical continua nativo. Distância mínima de 32–48 px para trocar uma foto;
+  pequenos arrastos não abrem o link. Cancelamento e múltiplos dedos abandonam
+  o gesto. Mouse/caneta e o feed Explorar mantêm o caminho de Pointer Events.
 - **Limpar filtros preserva a posição**: `apply({ revealResults: false })` e
   foco em busca com `preventScroll: true`. Retry do reset conserva a opção.
   Buscar/aplicar revela resultados após carregar; envio foca o título e
@@ -119,6 +124,11 @@ o README da pasta. A versão atual permanece vertical. Backup/testes ficam fora 
   Conferência de links/arquivos e preservação da aplicação em VALIDACAO.
 - QA histórico de galerias, detalhes e contato em Chrome com mobile emulado.
   Aparelhos físicos, Safari, leitor de tela e domínio final continuam pendentes.
+
+QA específico do novo swipe: `tests/galeria-swipe-browser.mjs`, Chrome isolado
+em 9341 (ou `QA_PORT`), Live Server 5500, dados/fotos simulados. O teste anterior
+à correção reproduziu a falha do gesto diagonal na Home em 390 px. Resultados da
+correção e regressão compartilhada estão no registro de 12/10 em VALIDACAO.
 
 Prévia Live Server em `http://127.0.0.1:5500`; conferir se está ativa.
 Node 24 opcional para testes. Não executar o showroom por `file://`.

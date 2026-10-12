@@ -124,6 +124,47 @@ export function createPhotoGallery({ name = "Veículo", cover = null, images, lo
     if (!["ArrowLeft", "ArrowRight"].includes(event.key) || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || event.repeat) return;
     event.preventDefault(); event.stopPropagation(); move(event.key === "ArrowRight" ? 1 : -1);
   });
+  if (!feed) {
+    // Decidir no primeiro movimento evita que um swipe diagonal vire scroll.
+    // Touch Events continuam disponíveis quando o navegador cancela o pointer.
+    let touchGesture = null;
+    root.addEventListener("touchstart", event => {
+      suppressClick = false;
+      touchGesture = null;
+      if (event.touches.length !== 1 || event.target.closest("button") || busy || disposed || (loaded && photos.length < 2)) return;
+      const touch = event.touches[0];
+      touchGesture = { id: touch.identifier, x: touch.clientX, y: touch.clientY, axis: null };
+    }, { passive: true });
+    root.addEventListener("touchmove", event => {
+      if (!touchGesture) return;
+      if (event.touches.length !== 1 || disposed) { touchGesture = null; return; }
+      const touch = Array.from(event.touches).find(item => item.identifier === touchGesture.id);
+      if (!touch) return;
+      const dx = touch.clientX - touchGesture.x, dy = touch.clientY - touchGesture.y;
+      if (!touchGesture.axis) {
+        if (Math.max(Math.abs(dx), Math.abs(dy)) < 6) return;
+        touchGesture.axis = Math.abs(dx) > Math.abs(dy) ? "horizontal" : "vertical";
+      }
+      if (touchGesture.axis !== "horizontal") return;
+      // Uma rolagem já iniciada não pode ser tomada de volta pela galeria.
+      if (!event.cancelable) { touchGesture = null; return; }
+      suppressClick = true;
+      event.preventDefault(); event.stopPropagation();
+    }, { passive: false });
+    root.addEventListener("touchend", event => {
+      if (!touchGesture) return;
+      const touch = Array.from(event.changedTouches).find(item => item.identifier === touchGesture.id);
+      if (!touch) return;
+      const gesture = touchGesture;
+      touchGesture = null;
+      if (gesture.axis !== "horizontal" || disposed) return;
+      suppressClick = true;
+      event.stopPropagation();
+      const dx = touch.clientX - gesture.x;
+      if (Math.abs(dx) >= Math.min(48, Math.max(32, root.clientWidth * 0.1))) move(dx < 0 ? 1 : -1);
+    }, { passive: true });
+    root.addEventListener("touchcancel", () => { touchGesture = null; }, { passive: true });
+  }
   root.addEventListener("pointerdown", event => {
     suppressClick = false;
     if (!event.isPrimary || event.button !== 0 || event.target.closest("button") || busy || disposed) { pointer = null; return; }
@@ -132,6 +173,12 @@ export function createPhotoGallery({ name = "Veículo", cover = null, images, lo
   root.addEventListener("pointermove", event => {
     if (!pointer || pointer.id !== event.pointerId) return;
     const dx = event.clientX - pointer.x, dy = event.clientY - pointer.y;
+    // Pointer Events detectam pequenos arrastos antes do primeiro touchmove.
+    // A troca de foto e a decisão de scroll ficam com os Touch Events acima.
+    if (!feed && event.pointerType === "touch") {
+      if (Math.max(Math.abs(dx), Math.abs(dy)) >= 8) suppressClick = true;
+      return;
+    }
     if (!pointer.horizontal && Math.abs(dy) > 12 && Math.abs(dy) >= Math.abs(dx)) { pointer = null; return; }
     if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy) * 1.5) {
       if (!pointer.horizontal) { pointer.horizontal = true; root.dispatchEvent(new CustomEvent("photo-swipe", { bubbles: true })); }
@@ -141,6 +188,7 @@ export function createPhotoGallery({ name = "Veículo", cover = null, images, lo
   });
   root.addEventListener("pointerup", event => {
     if (!pointer || pointer.id !== event.pointerId) return;
+    if (!feed && event.pointerType === "touch") { pointer = null; return; }
     const dx = event.clientX - pointer.x, dy = event.clientY - pointer.y;
     const horizontal = pointer.horizontal;
     const swipe = horizontal && Math.abs(dx) >= Math.min(90, Math.max(45, root.clientWidth * 0.12)) && Math.abs(dx) > Math.abs(dy) * 1.5 && performance.now() - pointer.time <= 1200;

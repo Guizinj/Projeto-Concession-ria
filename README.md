@@ -26,7 +26,7 @@ WhatsApp de `<noscript>` na localização. Para manter a arquitetura simples,
 use uma cópia do site e um projeto Supabase separado por loja. Trocar a marca
 mantendo o banco mostra o mesmo estoque.
 
-## Estado atual — 11/10/2026
+## Estado atual — 12/10/2026
 
 Etapas 4, 5 e 6 aprovadas; Etapa 7 implementada e em revisão. Cinco páginas
 funcionais, prévia local, sem deploy. Documentação consolidada para personalização
@@ -38,6 +38,9 @@ e entrega; a revisão final da instalação de cada cliente ainda precisa ser fe
 - Estoque: busca por marca/modelo/versão, filtros, URL compartilhável, menor preço
   como ordem padrão e lotes de 12. Buscar/aplicar leva aos resultados;
   **Limpar filtros atualiza sem rolar a página**.
+- Fotos na Home, Estoque e ficha: swipe lateral com reconhecimento antecipado
+  da direção, tolerância a gestos diagonais/curvos e proteção contra abrir o
+  anúncio durante um arrasto. Gestos verticais conservam a rolagem da página.
 - Explorar: feed vertical com um carro por tela, swipe lateral entre fotos,
   botões, gestos, roda do mouse e teclado; sem header, navegação inferior também no desktop.
 - Ficha: galeria, preço/status, dados técnicos, descrição/equipamentos, até quatro
@@ -133,6 +136,11 @@ QA de navegador atual: `tests/galeria-browser.mjs`, `tests/etapa6-browser.mjs`,
 e Chrome isolado com depuração local. Leia os cabeçalhos; `QA_PORT` permite outra
 porta onde suportado, e `QA_REAL=1` acrescenta leituras reais quando previsto.
 Scripts antigos podem depender de versões anteriores do layout.
+
+Regressão específica do swipe: `tests/galeria-swipe-browser.mjs`, com Chrome
+isolado em 9341 (`QA_PORT` permite outra porta). Simula fotos/dados e envia toques
+ao navegador para conferir diagonais, curvas, cancelamento, rolagem e links nas
+três páginas em quatro larguras; não consulta o Supabase real.
 
 Publicação é uma etapa separada com autorização específica. O pacote de execução
 usa cinco HTMLs, CSS, JS e assets necessários. Documentação, SQL, testes, backups,

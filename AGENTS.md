@@ -6,6 +6,9 @@ Leia [README.md](README.md), [CONTINUIDADE.md](CONTINUIDADE.md) e os arquivos re
 
 Estado consolidado em 11/10/2026: showroom demonstrativo Vértice Motors, cinco páginas funcionais, Etapas 4/5/6 aprovadas e Etapa 7 implementada em revisão. Não há deploy. A revisão documental e as correções pontuais solicitadas não significam aprovação automática da próxima etapa.
 
+Revisão funcional de 12/10/2026: swipe lateral melhorado na Home, Estoque e ficha.
+O ponto de continuidade e as evidências registram essa correção solicitada.
+
 O pedido atual do usuário autoriza os ajustes que ele descreve. Não peça novamente permissão para tarefas já autorizadas. Não iniciar uma etapa nova, publicar, alterar banco remoto ou enviar mensagens a terceiros sem instrução correspondente. Não introduzir agentes paralelos por rotina.
 
 ## Arquitetura e responsabilidades
@@ -31,6 +34,11 @@ O usuário quer mudanças discretas, restritas ao trecho solicitado, com priorid
 - Estoque: menor preço como ordem padrão, critérios explícitos na URL, lotes de 12, debounce de 300 ms. Aplicar/buscar revela resultados após carregar; envio foca o título e digitação conserva foco no campo.
 - **“Limpar filtros” limpa e recarrega sem rolagem automática**, usando `apply({ revealResults: false })` e foco no campo com `preventScroll: true`. Não reintroduzir scroll no reset, retry desse reset, respostas canceladas ou carregamento de mais itens.
 - Explorar: feed vertical de um veículo por tela, sem header/logo/contato fixo, foto principal inteira e fundo desfocado. Gesto vertical/↑↓ troca carros; lateral/←→ troca fotos. Navegação inferior também no desktop, azul escuro nessa página.
+- Nas galerias fora do feed, toque lateral usa Touch Events com eixo definido
+  no início do gesto, tolerando diagonais/curvas e impedindo scroll somente no
+  eixo horizontal. Preservar rolagem vertical nativa, zoom com múltiplos dedos,
+  cancelamento, toque no link e bloqueio de clique após arrasto. Não duplicar a
+  troca pelo handler de Pointer Events, usado para mouse/caneta e para Explorar.
 - Ficha: galeria 4:3 com `cover`, avisos de reservado/vendido, ficha técnica, descrição, equipamentos e semelhantes independentes. Compartilhar/copiar ficam no menu de três pontos ao lado do WhatsApp.
 - Localização/contato: formulário com CTA de test drive; mapa apenas nessa página. Contato pelo menu leva a `localizacao.html#contato-titulo`. WhatsApp direto com verde suave.
 - Navegação inferior flutuante no celular, menu lateral móvel e compacto no desktop, rodapé institucional nas quatro páginas com rolagem. Movimento reduzido, teclado/foco e alternativas sem JS devem ser preservados.
@@ -63,6 +71,10 @@ node --test tests/dados.test.mjs tests/catalogo-url.test.mjs tests/explorar.test
 Execute os testes adequados ao que mudou e `node --check` nos módulos alterados. Para alterações visuais/funcionais, confira as páginas afetadas em 360/390/768/1440 px, ausência de overflow/erros de console, teclado, foco e movimento reduzido; hero também em 320 px. Não escrever testes que apenas repitam uma mudança cosmética.
 
 QA opcional atual: `tests/galeria-browser.mjs`, `tests/etapa6-browser.mjs`, `tests/etapa7-browser.mjs`, `tests/localizacao-browser.mjs`. Leia o cabeçalho para configurar Chrome isolado e porta (`QA_PORT` onde suportado). `QA_REAL=1` acrescenta leituras reais e depende da conexão/configuração/fixtures, não é teste unitário offline. Testes de etapas antigas podem pressupor layouts anteriores; não interpretá-los como prova do layout atual sem revisão.
+
+`tests/galeria-swipe-browser.mjs` cobre a correção de gestos das páginas com
+rolagem: Chrome isolado 9341/`QA_PORT`, sem leituras remotas, toques no navegador
+em 360/390/768/1440 px. Usar ao alterar reconhecimento de gesto, scroll ou cliques.
 
 Feche somente os processos/perfis que abriu; preserve servidores e alterações do usuário. Documente verificações realmente executadas, distinguindo histórico, teste simulado e leitura real. Não declarar aparelhos físicos, Safari, leitor de tela, publicação ou nova loja validados sem evidência.
 

@@ -1,9 +1,52 @@
 # Validação — estado atual e histórico
 
-Atualizado em **11/10/2026**, na organização da documentação para personalizar e
-entregar o showroom. Os registros abaixo são evidências da versão/data de cada
+Atualizado em **12/10/2026**, após melhorar o swipe das fotos na Home, Estoque e
+ficha. Os registros abaixo são evidências da versão/data de cada
 etapa: não devem ser lidos como inventário permanente ou validação automática
 de outra loja. O estado de retomada está em [CONTINUIDADE.md](CONTINUIDADE.md).
+
+## Swipe lateral — Home, Estoque e ficha — 12/10/2026
+
+Falha reproduzida antes da alteração com toques no Chrome: gesto lateral de
+96 px com desvio vertical de 70 px na Home não trocava a foto. O reconhecimento
+anterior exigia razão horizontal/vertical maior que 1,5 e voltava a verificar
+essa razão ao soltar, rejeitando também curvas após o início lateral.
+
+`js/components/photo-gallery.js` agora usa Touch Events fora do feed, identifica
+o eixo no começo e conserva essa intenção até soltar. Cancela o comportamento
+nativo somente no gesto horizontal cancelável; vertical conserva rolagem.
+Distância mínima entre 32 e 48 px para trocar foto, sem limite de velocidade.
+Pointer Events detectam pequenos arrastos para evitar clique acidental; mouse,
+caneta e o feed Explorar conservam o caminho anterior. Múltiplos dedos e
+`touchcancel` abandonam a troca; `pan-y pinch-zoom` continua no CSS.
+
+Verificações executadas com fixtures/fotos simuladas, sem consultas remotas:
+
+- `node tests/galeria-swipe-browser.mjs`: **três páginas × quatro larguras**
+  (360/390/768/1440 px). Toques enviados via CDP verificaram diagonais nos dois
+  sentidos, curva após início lateral, gesto curto intencional, movimento pequeno,
+  cancelamento, scroll vertical nativo, teclado/botões, toque normal no link,
+  ausência de overflow e erros de console. Swipes laterais conservaram posição
+  com tolerância de 2 px; nenhum arrasto abriu a ficha.
+- `$env:QA_PORT='9341'; node tests/galeria-browser.mjs`: regressão completa passou
+  nas quatro páginas com galeria, incluindo Explorar. Verificados ambos os eixos,
+  teclado, foto única/ausente, erro/retry, concorrência, cancelamento, carregamento
+  limitado, economia de dados, URLs/texto seguro, movimento reduzido e console.
+- **Sete testes locais** passaram:
+  `node --test tests/galeria.test.mjs tests/explorar.test.mjs tests/explorar-vertical.test.mjs`.
+  Sintaxe do componente e do novo QA conferida com `node --check`.
+
+O QA específico fica no repositório para repetir a falha; requer servidor
+HTTP em 5500 e Chrome isolado em 9341, ou porta configurada por `QA_PORT`.
+Não é dependência de execução do site. Capturas da regressão ficaram em
+`vertice-captures-galerias`, no diretório temporário do Windows.
+
+Sem mudança visual, configuração, consultas, SQL/RLS/Storage, hero, filtros,
+WhatsApp ou publicação. Mobile emulado no Chrome; aparelhos físicos/Safari e
+zoom por gesto de pinça em aparelho real continuam sem validação específica.
+
+Referência técnica consultada: o navegador pode cancelar Pointer Events ao
+assumir um gesto de toque, conforme [MDN — touch-action](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/touch-action).
 
 ## Revisão documental e personalização — 11/10/2026
 

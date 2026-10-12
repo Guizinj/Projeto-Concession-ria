@@ -1,6 +1,6 @@
 # Vértice Motors — Design System
 
-Atualizado em 11/10/2026. HTML, CSS e componentes DOM em JavaScript Vanilla,
+Atualizado em 12/10/2026. HTML, CSS e componentes DOM em JavaScript Vanilla,
 sem bibliotecas, fontes externas ou build. Este documento consolida a base da
 Etapa 3 e as revisões posteriores. O estado atual de Home/Estoque inclui os
 ajustes de hero e limpeza de filtros descritos abaixo.
@@ -175,6 +175,14 @@ Botões de fotos têm 44 px, ficam fora dos links, e o grupo recebe foco por tec
 Contador anuncia mudanças após a interação. A ordem vem de `ordem`, começando
 pela capa, com navegação circular. Fotos únicas escondem controles; falhas têm
 fallback ou retry. A animação lateral respeita movimento reduzido.
+
+Na revisão de 12/10, as galerias da Home, Estoque e ficha reconhecem o toque
+lateral mais cedo, mantendo o eixo inicial em movimentos diagonais/curvos.
+O listener de `touchmove` cancela o comportamento nativo somente quando o
+gesto é horizontal; vertical conserva scroll. Mínimo de 32–48 px para trocar
+foto, sem exigir velocidade; pequenos arrastos bloqueiam abertura acidental
+do anúncio. Múltiplos dedos/cancelamento abandonam o swipe. `pan-y pinch-zoom`
+é preservado; mouse/caneta e Explorar conservam Pointer Events. Sem alteração visual.
 
 Só a foto atual e a seguinte são carregadas após a consulta da galeria, sem
 baixar todas as imagens. Economia de dados impede antecipações. No Explorar,
